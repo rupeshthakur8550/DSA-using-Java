@@ -471,9 +471,6 @@ private static int countOfRotation(int[] arr) {
         return -1;
 }
 ```
----
-
-Here is the updated Bit Manipulations section for your GitHub README:
 
 ---
 
