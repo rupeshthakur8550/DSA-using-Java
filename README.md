@@ -476,20 +476,22 @@ private static int countOfRotation(int[] arr) {
 ```
 ---
 
+Here is the updated Bit Manipulations section for your GitHub README:
+
+---
+
 ## Bit Manipulations
 
 Bit manipulation is the act of algorithmically manipulating bits or binary digits, which are the most basic form of data in computers.
 
 ### Bitwise Operations Table
 
-| Operation | Symbol | Description                  |
-|-----------|--------|------------------------------|
+| Operation | Symbol | Description                         |
+|-----------|--------|-------------------------------------|
 | AND       | `&`    | Sets each bit to 1 if both bits are 1 |
 | OR        | `\|`   | Sets each bit to 1 if one of the bits is 1 |
 | NOT       | `~`    | Inverts all the bits                |
-| XOR       | `^
-
-`    | Sets each bit to 1 if only one of the bits is 1 |
+| XOR       | `^`    | Sets each bit to 1 if only one of the bits is 1 |
 | Left Shift  | `<<`   | Shifts bits to the left             |
 | Right Shift | `>>`   | Shifts bits to the right            |
 
@@ -508,6 +510,139 @@ public class BitwiseAnd {
 }
 ```
 
+### Print Even Numbers Using Bitwise AND
+
+```java
+public class PrintEven {
+    public static void main(String[] args) {
+        printEven(new int[] { 1, 10, 2, 20, 40, 200 });
+    }
+
+    private static void printEven(int[] arr) {
+        for (int val : arr) {
+            if ((val & 1) != 1) {
+                System.out.println(val);
+            }
+        }
+    }
+}
+```
+
+### Print Odd Numbers Using Bitwise AND
+
+```java
+public class PrintOdd {
+    public static void main(String[] args) {
+        printOdd(new int[] { 1, 10, 2, 20, 40, 200 });
+    }
+
+    private static void printOdd(int[] arr) {
+        for (int val : arr) {
+            if ((val & 1) == 1) {
+                System.out.println(val);
+            }
+        }
+    }
+}
+```
+
+### Find Non-Duplicate Element Using XOR
+
+```java
+public class FindNonDuplicate {
+    public static void main(String[] args) {
+        findNonDuplicate(new int[] { 1, 1, 4, 4, 5, 6, 6 });
+    }
+
+    private static void findNonDuplicate(int[] arr) {
+        // Array contains elements double duplicate only one element is single
+        int xor = 0;
+        for (int val : arr) {
+            xor = xor ^ val;
+        }
+        System.out.println(xor);
+    }
+}
+```
+
+### Power of a Number Using Bitwise Operators
+
+```java
+public class Power {
+    public static void main(String[] args) {
+        System.out.println(power(2, 2));
+    }
+
+    private static int power(int val, int power) {
+        int ans = 1;
+        int base = val;
+        while (power > 0) {
+            if ((power & 1) == 1) {
+                ans *= base;
+            }
+            base *= base;
+            power >>= 1;
+        }
+        return ans;
+    }
+}
+```
+
+### Convert Decimal to Binary Using Bitwise Operators
+
+```java
+public class DecimalToBinary {
+    public static void main(String[] args) {
+        System.out.println(decimalToBinary(3));
+    }
+
+    private static int decimalToBinary(int n) {
+        if (n == 0) {
+            return 0;
+        }
+
+        int base = 1;
+        int ans = 0;
+        while (n > 0) {
+            int bit = n & 1;
+            ans += bit * base;
+            base *= 10;
+            n >>= 1;
+        }
+
+        return ans;
+    }
+}
+```
+
+### Convert Binary to Decimal Using Bitwise Operators
+
+```java
+public class BinaryToDecimal {
+    public static void main(String[] args) {
+        System.out.println(binaryToDecimal(1011));
+    }
+
+    private static int binaryToDecimal(long n) {
+        if (n == 0) {
+            return 0;
+        }
+        int ans = 0;
+        int base = 0;
+
+        while (n > 0) {
+            int bit = (int) (n % 10);
+            ans += bit << base;
+            base++;
+            n /= 10;
+        }
+
+        return ans;
+    }
+}
+```
+---
+
 ## String Handling
 
 ### String
@@ -520,12 +655,25 @@ public class StringManipulations {
     public static void main(String[] args) {
         String str = "Hello, World!";
         
+        // Basic methods
         System.out.println(str.length());  // Output: 13
         System.out.println(str.charAt(1));  // Output: e
         System.out.println(str.substring(0, 5));  // Output: Hello
         System.out.println(str.toUpperCase());  // Output: HELLO, WORLD!
         System.out.println(str.toLowerCase());  // Output: hello, world!
         System.out.println(str.replace("World", "Java"));  // Output: Hello, Java!
+        
+        // Additional methods
+        System.out.println(str.contains("World"));  // Output: true
+        System.out.println(String.join("-", "Hello", "World"));  // Output: Hello-World
+        System.out.println(str.isEmpty());  // Output: false
+        System.out.println(str.concat(" Welcome!"));  // Output: Hello, World! Welcome!
+        String[] parts = str.split(", ");
+        for (String part : parts) {
+            System.out.println(part);  // Output: Hello\nWorld!
+        }
+        System.out.println("   Hello   ".trim());  // Output: Hello
+        System.out.println(str.replace('o', 'O'));  // Output: HellO, WOrld!
     }
 }
 ```
@@ -554,6 +702,14 @@ public class StringBufferExample {
         
         sb.reverse();
         System.out.println(sb);  // Output: !dlroW ,olleH
+        
+        // Additional methods
+        System.out.println(sb.capacity());  // Output: Current capacity of StringBuffer
+        System.out.println(sb.charAt(0));  // Output: !
+        System.out.println(sb.substring(0, 5));  // Output: !dlro
+        sb.deleteCharAt(0);
+        System.out.println(sb);  // Output: dlroW ,olleH
+        System.out.println(sb.toString());  // Output: dlroW ,olleH
     }
 }
 ```
@@ -582,6 +738,184 @@ public class StringBuilderExample {
         
         sb.reverse();
         System.out.println(sb);  // Output: !dlroW ,olleH
+        
+        // Additional methods
+        System.out.println(sb.capacity());  // Output: Current capacity of StringBuilder
+        System.out.println(sb.charAt(0));  // Output: !
+        System.out.println(sb.substring(0, 5));  // Output: !dlro
+        sb.deleteCharAt(0);
+        System.out.println(sb);  // Output: dlroW ,olleH
+        System.out.println(sb.toString());  // Output: dlroW ,olleH
+    }
+}
+```
+
+### Reverse a String
+
+```java
+public class ReverseString {
+    public static void main(String[] args) {
+        System.out.println(reverse("Hello"));  // Output: olleH
+    }
+
+    private static String reverse(String str) {
+        StringBuilder sb = new StringBuilder(str);
+        int i = 0, j = str.length() - 1;
+        while (i < j) {
+            char ch = sb.charAt(i);
+            sb.setCharAt(i++, sb.charAt(j));
+            sb.setCharAt(j--, ch);
+        }
+        return sb.toString();
+    }
+}
+```
+
+### Check if a String is Palindrome
+
+```java
+public class PalindromeCheck {
+    public static void main(String[] args) {
+        System.out.println(isPalindrome("Abba"));  // Output: true
+    }
+
+    private static boolean isPalindrome(String str) {
+        if (str.isEmpty()) {
+            return true;
+        }
+        int i = 0, j = str.length() - 1;
+        while (i <= j) {
+            if (str.charAt(i++) != str.charAt(j--))
+                return false;
+        }
+        return true;
+    }
+}
+```
+
+### Skip a Specific Character in a String
+
+```java
+public class SkipCharacter {
+    public static void main(String[] args) {
+        System.out.println(skipChar("Rupesh", 'u'));  // Output: Rpesh
+    }
+
+    private static String skipChar(String str, char ch) {
+        StringBuilder sb = new StringBuilder(str);
+        for (int i = 0; i < sb.length(); i++) {
+            if (sb.charAt(i) == ch) {
+                sb.deleteCharAt(i);
+            }
+        }
+        return sb.toString();
+    }
+}
+```
+
+### Find All Permutations of a String
+
+```java
+import java.util.ArrayList;
+
+public class SubStringPermutations {
+    public static void main(String[] args) {
+        System.out.println(subString("abc", ""));  // Output: [abc, acb, bac, bca, cab, cba]
+    }
+
+    private static ArrayList<String> subString(String p, String up) {
+        if (p.isEmpty()) {
+            ArrayList<String> list = new ArrayList<>();
+            list.add(up);
+            return list;
+        }
+        ArrayList<String> list = new ArrayList<>();
+        for (int i = 0; i < p.length(); i++) {
+            char curr = p.charAt(i);
+            String temp = p.substring(0, i) + p.substring(i + 1);
+            list.addAll(subString(temp, up + curr));
+        }
+        return list;
+    }
+}
+```
+
+### Find All Subsequences of a String
+
+```java
+import java.util.ArrayList;
+
+public class Subsequences {
+    public static void main(String[] args) {
+        System.out.println(subSeq("", "abc"));  // Output: [abc, ab, ac, a, bc, b, c, ]
+    }
+
+    private static ArrayList<String> subSeq(String p, String up) {
+        if (up.isEmpty()) {
+            ArrayList<String> list = new ArrayList<>();
+            list.add(p);
+            return list;
+        }
+        ArrayList<String> list = new ArrayList<>();
+        list.addAll(subSeq(p + up.charAt(0), up.substring(1)));
+        list.addAll(subSeq(p, up.substring(1)));
+        return list;
+    }
+}
+```
+
+### Permutations of Dice
+
+```java
+import java.util.ArrayList;
+
+public class DicePermutations {
+    public static void main(String[] args) {
+        System.out.println(permutationsOfDice("", 5));  // Output: [1,1,1,1,1, 1,1,1,2, 1,1,2,1, ...]
+    }
+
+    private static ArrayList<String> permutationsOfDice(String p, int target) {
+        if (target == 0) {
+            ArrayList<String> list = new ArrayList<>();
+            list.add(p);
+            return list;
+        }
+        ArrayList<String> list = new ArrayList<>();
+        for (int i = 1; i <= 6 && i <= target; i++) {
+            list.addAll(permutationsOfDice(p + i + (target - i == 0 ? "" : ","), target - i));
+        }
+        return list;
+    }
+}
+```
+
+### Find All Paths in a Grid
+
+```java
+import java.util.ArrayList;
+
+public class GridPaths {
+    public static void main(String[] args) {
+        System.out.println(allPaths(3, 3, ""));  // Output: [VV, VDR, VRD, DVR, DDRR, ...]
+    }
+
+    private static ArrayList<String> allPaths(int row, int col, String p) {
+        if (row == 1 && col == 1) {
+            ArrayList<String> list = new ArrayList<>();
+            list.add(p);
+            return list;
+        }
+        ArrayList<String> list = new ArrayList<>();
+        if (row > 1 && col > 1) {
+            list.addAll(allPaths(row - 1, col - 1, p + 'V'));
+        }
+        if (row > 1) {
+            list.addAll(allPaths(row - 1, col, p + 'D'));
+        }
+        if (col > 1) {
+            list.addAll(allPaths(row, col - 1, p + 'R'));
+        }
+        return list;
     }
 }
 ```
