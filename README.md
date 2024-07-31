@@ -19,6 +19,13 @@ This repository is a comprehensive guide to Data Structures and Algorithms (DSA)
    - [String](#string)
    - [StringBuffer](#stringbuffer)
    - [StringBuilder](#stringbuilder)
+5. [Sorting Techniques](#sorting-techniques)
+   - [Bubble Sort](#string)
+   - [Selection Sort](#stringbuffer)
+   - [Insertion Sort](#stringbuilder)
+   - [Cyclic Sort]()
+   - [Merge Sort]()
+   - [Quick Sort]()
 
 ## Arrays and ArrayLists
 
