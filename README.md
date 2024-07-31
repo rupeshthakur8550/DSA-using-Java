@@ -910,6 +910,234 @@ public class GridPaths {
 }
 ```
 
+### Sorting Techniques
+
+Sorting is a process of arranging the elements in a list or array in a particular order (ascending or descending). Here are implementations of various sorting techniques in Java:
+
+#### Bubble Sort
+Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted.
+
+**Example: Bubble Sort Implementation**
+
+```java
+import java.util.Arrays;
+
+public class BubbleSortExample {
+    public static void main(String[] args) {
+        int[] arr = { 5, 2, 4, 1, 3 };
+        bubbleSort(arr);
+        System.out.println(Arrays.toString(arr));  // Output: [1, 2, 3, 4, 5]
+    }
+
+    private static void bubbleSort(int[] arr) {
+        boolean swapped;
+        for (int i = 0; i < arr.length; i++) {
+            swapped = false;
+            for (int j = 1; j < arr.length - i; j++) {
+                if (arr[j - 1] > arr[j]) {
+                    int temp = arr[j - 1];
+                    arr[j - 1] = arr[j];
+                    arr[j] = temp;
+                    swapped = true;
+                }
+            }
+            if (!swapped) {
+                break;
+            }
+        }
+    }
+}
+```
+
+#### Selection Sort
+Selection Sort is a simple comparison-based algorithm in which the list is divided into two parts: the sorted part at the left end and the unsorted part at the right end. Initially, the sorted part is empty, and the unsorted part is the entire list.
+
+**Example: Selection Sort Implementation**
+
+```java
+import java.util.Arrays;
+
+public class SelectionSortExample {
+    public static void main(String[] args) {
+        int[] arr = { 5, 2, 4, 1, 3 };
+        selectionSort(arr);
+        System.out.println(Arrays.toString(arr));  // Output: [1, 2, 3, 4, 5]
+    }
+
+    private static void selectionSort(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            int min = i;
+            for (int j = i; j < arr.length; j++) {
+                if (arr[j] < arr[min]) {
+                    min = j;
+                }
+            }
+            int temp = arr[i];
+            arr[i] = arr[min];
+            arr[min] = temp;
+        }
+    }
+}
+```
+
+#### Insertion Sort
+Insertion Sort is a simple sorting algorithm that builds the final sorted array one item at a time. It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort.
+
+**Example: Insertion Sort Implementation**
+
+```java
+import java.util.Arrays;
+
+public class InsertionSortExample {
+    public static void main(String[] args) {
+        int[] arr = { 5, 2, 4, 1, 3 };
+        insertionSort(arr);
+        System.out.println(Arrays.toString(arr));  // Output: [1, 2, 3, 4, 5]
+    }
+
+    private static void insertionSort(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = i; j > 0; j--) {
+                if (arr[j] < arr[j - 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j - 1];
+                    arr[j - 1] = temp;
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+}
+```
+
+#### Cyclic Sort
+Cyclic Sort is a sorting algorithm that is only applicable when the given array contains elements ranging from 1 to N.
+
+**Example: Cyclic Sort Implementation**
+
+```java
+import java.util.Arrays;
+
+public class CyclicSortExample {
+    public static void main(String[] args) {
+        int[] arr = { 3, 5, 2, 1, 4 };
+        cyclicSort(arr);
+        System.out.println(Arrays.toString(arr));  // Output: [1, 2, 3, 4, 5]
+    }
+
+    private static void cyclicSort(int[] arr) {
+        int i = 0;
+        while (i < arr.length) {
+            int correctIndex = arr[i] - 1;
+            if (arr[i] != arr[correctIndex]) {
+                int temp = arr[i];
+                arr[i] = arr[correctIndex];
+                arr[correctIndex] = temp;
+            } else {
+                i++;
+            }
+        }
+    }
+}
+```
+
+#### Merge Sort
+Merge Sort is an efficient, stable, comparison-based, divide-and-conquer sorting algorithm. Most implementations produce a stable sort, meaning that the implementation preserves the input order of equal elements in the sorted output.
+
+**Example: Merge Sort Implementation**
+
+```java
+import java.util.Arrays;
+
+public class MergeSortExample {
+    public static void main(String[] args) {
+        int[] arr = { 5, 2, 4, 1, 3 };
+        mergeSort(arr, 0, arr.length);
+        System.out.println(Arrays.toString(arr));  // Output: [1, 2, 3, 4, 5]
+    }
+
+    private static void mergeSort(int[] arr, int start, int end) {
+        if (end - start <= 1) {
+            return;
+        }
+        int mid = start + (end - start) / 2;
+        mergeSort(arr, start, mid);
+        mergeSort(arr, mid, end);
+        merge(arr, start, mid, end);
+    }
+
+    private static void merge(int[] arr, int start, int mid, int end) {
+        int[] sorted = new int[end - start];
+        int left = start;
+        int right = mid;
+        int index = 0;
+
+        while (left < mid && right < end) {
+            if (arr[left] <= arr[right]) {
+                sorted[index++] = arr[left++];
+            } else {
+                sorted[index++] = arr[right++];
+            }
+        }
+
+        while (left < mid) {
+            sorted[index++] = arr[left++];
+        }
+
+        while (right < end) {
+            sorted[index++] = arr[right++];
+        }
+
+        for (int i = 0; i < sorted.length; i++) {
+            arr[start + i] = sorted[i];
+        }
+    }
+}
+```
+
+#### Quick Sort
+Quick Sort is an efficient, in-place, comparison-based sorting algorithm. It is also known as partition-exchange sort.
+
+**Example: Quick Sort Implementation**
+
+```java
+import java.util.Arrays;
+
+public class QuickSortExample {
+    public static void main(String[] args) {
+        int[] arr = { 5, 2, 4, 1, 3 };
+        quickSort(arr, 0, arr.length - 1);
+        System.out.println(Arrays.toString(arr));  // Output: [1, 2, 3, 4, 5]
+    }
+
+    private static void quickSort(int[] arr, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+        int nstart = start, nend = end;
+        int pivote = arr[nstart + (nend - nstart) / 2];
+        while (nstart <= nend) {
+            while (arr[nstart] < pivote) {
+                nstart++;
+            }
+            while (arr[nend] > pivote) {
+                nend--;
+            }
+            if (nstart <= nend) {
+                int temp = arr[nstart];
+                arr[nstart++] = arr[nend];
+                arr[nend--] = temp;
+            }
+        }
+        quickSort(arr, start, nend);
+        quickSort(arr, nstart, end);
+    }
+}
+```
+
+Each of these sorting techniques has its own strengths and use cases, and the choice of which one to use depends on the specific requirements of the task at hand.
+
 ---
 
 This README file provides a comprehensive guide to the content of your DSA repository, including examples and detailed explanations.
