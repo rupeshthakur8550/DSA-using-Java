@@ -160,13 +160,6 @@ public class MultiDimensionalArrayList {
 ```
 
 ## Searching Algorithms
-Here is the updated README file with the correct structure and added question statements:
-
----
-
-# Data Structures and Algorithms (DSA) Recap
-
-## Searching Algorithms
 
 ### Linear Search
 
