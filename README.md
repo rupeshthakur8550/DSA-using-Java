@@ -1,6 +1,3 @@
-Sure! Here is the updated and more informative README file for your GitHub repository on Data Structures and Algorithms (DSA) in Java:
-
----
 
 # Data Structures and Algorithms (DSA) in Java
 
