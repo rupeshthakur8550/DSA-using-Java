@@ -26,6 +26,8 @@ This repository is a comprehensive guide to Data Structures and Algorithms (DSA)
    - [Cyclic Sort]()
    - [Merge Sort]()
    - [Quick Sort]()
+6. OOPs
+   - [Classes and Objects]
 
 ## Arrays and ArrayLists
 
