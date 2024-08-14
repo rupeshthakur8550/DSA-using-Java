@@ -1171,7 +1171,7 @@ Each of these sorting techniques has its own strengths and use cases, and the ch
 
 # Object-Oriented Programming (OOP) in Java
 
-## 1. Classes and Objects
+### 1. Classes and Objects
 
 ### Classes
 - A **class** is a blueprint for creating objects and defines a new data type that can be used to instantiate objects.
@@ -1203,7 +1203,7 @@ myBox = new Box();   // Allocate a Box object
 - `myBox` is a reference to a `Box` object.
 - `new Box()` allocates memory for the object and assigns the reference to `myBox`.
 
-## 2. The Dot Operator
+### 2. The Dot Operator
 - The dot operator (`.`) links the object with its instance variables or methods, formally a separator in Java.
 
 **Example: Using the Dot Operator**
