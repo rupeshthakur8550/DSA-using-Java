@@ -1364,7 +1364,7 @@ Base Class Constructor Called with value 10
 Derived Class Constructor Called with value 10
 ```
 ---
-## 9. Packages in Java
+## 10. Packages in Java
 
 ### Introduction to Packages
 - **Packages** in Java are containers for classes, helping to keep the class namespace compartmentalized. They ensure that class names do not collide with one another, even if multiple classes have the same name but are stored in different packages.
@@ -1459,7 +1459,7 @@ The Java run-time system looks for packages using three mechanisms:
 - **Access Control** is enforced in packages, where only `public` members are accessible to classes outside the package.
 - Proper **directory structure** is crucial for packages to be recognized by the Java run-time system.
 ---
-## 10. Understanding Static
+## 11. Understanding Static
 
 ### Introduction to Static Members
 - **Static members** in Java, such as methods and variables, can be accessed before any objects of the class are created and without reference to any object.
@@ -1563,7 +1563,7 @@ The Java run-time system looks for packages using three mechanisms:
 - **Static Inner Classes**: Only nested classes can be static, and static inner classes can have static variables.
 ---
 
-10. **Inheritance in Java:**
+## 12. Inheritance in Java:
     - Inheritance allows a class to use properties and methods of another class. The class that is inherited is called the superclass, and the class that inherits is called the subclass.
     - The `extends` keyword is used to inherit a class.
     
@@ -1575,7 +1575,7 @@ The Java run-time system looks for packages using three mechanisms:
     - You can only specify one superclass for any subclass that you create. Java does not support the inheritance of multiple super classes into a single subclass. However, you can create a hierarchy of inheritance in which a subclass becomes a superclass of another subclass.
     - Although a subclass includes all of the members of its superclass, it cannot access those members of the superclass that have been declared as `private`.
 
-## **Types of Inheritance** -
+ **Types of Inheritance** -
 
     - **Single Inheritance**:  
       This type of inheritance involves a subclass inheriting from a single superclass.  
@@ -1697,7 +1697,7 @@ Here is the continued explanation, incorporating the context provided:
 
 ---
 
-11. **A Superclass Variable Can Reference a Subclass Object:**
+## 13. A Superclass Variable Can Reference a Subclass Object:
     - It is important to understand that it is the type of the reference variable—not the type of the object that it refers to—that determines what members can be accessed.
     - When a reference to a subclass object is assigned to a superclass reference variable, you will have access only to those parts of the object defined by the superclass.
 
@@ -1705,7 +1705,7 @@ Here is the continued explanation, incorporating the context provided:
     Superclass ref = new Subclass(); // ref can only access methods which are available in SUPERCLASS
     ```
 
-12. **Using `super`:**
+## 14. Using `super`:
     - Whenever a subclass needs to refer to its immediate superclass, it can do so by using the keyword `super`.
     - `super` has two general forms:
         1. The first calls the superclass’s constructor.
@@ -1726,7 +1726,7 @@ Here is the continued explanation, incorporating the context provided:
     - Here, `BoxWeight( )` calls `super( )` with the arguments `w`, `h`, and `d`. This causes the `Box` constructor to be called, which initializes `width`, `height`, and `depth` using these values. `BoxWeight` no longer initializes these values itself. It only needs to initialize the value unique to it: `weight`.
     - Thus, `super( )` always refers to the superclass immediately above the calling class.
 
-13. **A Second Use for `super`:**
+## 15. A Second Use for `super`:
     - The second form of `super` acts somewhat like `this`, except that it always refers to the superclass of the subclass in which it is used.
 
     ```java
@@ -1735,7 +1735,7 @@ Here is the continued explanation, incorporating the context provided:
 
     - Here, `member` can be either a method or an instance variable. This form of `super` is most applicable to situations in which member names of a subclass hide members by the same name in the superclass.
 
-14. **Using `final` with Inheritance:**
+## 16. Using `final` with Inheritance:
 
     - The keyword `final` has three uses:
         1. **Creating the equivalent of a named constant:**
@@ -1768,7 +1768,7 @@ Here is the continued explanation, incorporating the context provided:
             - Note: Declaring a class as `final` implicitly declares all of its methods as `final`, too.
             - It is illegal to declare a class as both `abstract` and `final` since an abstract class is incomplete by itself and relies upon its subclasses to provide complete implementations.
 
-15. **Polymorphism does not apply to instance variables:**
+## 17. Polymorphism does not apply to instance variables:
     - Instance variables are not overridden; they are hidden. Therefore, polymorphism does not apply to instance variables. The reference type determines which instance variables are accessible.
 
     ```java
@@ -1788,7 +1788,7 @@ Here is the continued explanation, incorporating the context provided:
     }
     ```
 
-15. **Overloading Methods:**
+## 18. Overloading Methods:
     - In Java, it is possible to define two or more methods within the same class that share the same name, as long as their parameter declarations are different.
     - Overloaded methods may have different return types, but the return type alone is insufficient to distinguish two versions of a method.
 
@@ -1809,7 +1809,7 @@ Here is the continued explanation, incorporating the context provided:
     }
     ```
 
-16. **Returning Objects:**
+## 19. Returning Objects:
 
     - Java allows you to return objects from methods. When a method returns an object, a reference to that object is returned to the calling routine.
 
@@ -1838,7 +1838,7 @@ Here is the continued explanation, incorporating the context provided:
 
     - As you can see, each time `incrByTen( )` is invoked, a new object is created, and a reference to it is returned to the calling routine.
 
-17. **Note on Unsupported Types:**
+## 20. Note on Unsupported Types:
     - **Multiple Inheritance:** Java does not support multiple inheritance (a class cannot inherit from more than one class) due to the "diamond problem." However, multiple inheritance can be achieved through interfaces.
 
         ```java
