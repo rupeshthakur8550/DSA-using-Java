@@ -26,7 +26,7 @@
    - [Cyclic Sort](#cyclic-sort)
    - [Merge Sort](#merge-sort)
    - [Quick Sort](#quick-sort)
-6. [Object-Oriented Programming](#object-oriented-programming)
+6. [Object-Oriented Programming](#object-oriented-programming-(OOP)-in-java)
    - [Classes and Objects](#classes-and-objects)
    - [Inheritance](#inheritance)
      - [Single Inheritance](#single-inheritance)
@@ -1169,7 +1169,7 @@ Each of these sorting techniques has its own strengths and use cases, and the ch
 
 ---
 
-# Object-Oriented Programming (OOP) in Java
+### Object-Oriented Programming (OOP) in Java
 
 ### 1. Classes and Objects
 
