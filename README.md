@@ -48,21 +48,11 @@
          - [Hierarchical Inheritance](#hierarchical-inheritance)
          - [Multiple Inheritance (Not Supported in Java)](#multiple-inheritance-not-supported-in-java)
          - [Hybrid Inheritance (Not Supported in Java)](#hybrid-inheritance-not-supported-in-java)
-   - [Superclass Variable References Subclass Objects](#a-superclass-variable-can-reference-a-subclass-object)
-   - [Using `super`](#using-super)
-     - [Calling Superclass Constructor](#calling-superclass-constructor)
-     - [Accessing Superclass Members](#accessing-superclass-members)
-   - [Using `final`](#using-final)
-     - [Creating Named Constants](#creating-named-constants)
-     - [Preventing Method Overriding](#preventing-method-overriding)
-     - [Preventing Inheritance](#preventing-inheritance)
-   - [Polymorphism](#polymorphism)
-     - [Instance Variables](#polymorphism-does-not-apply-to-instance-variables)
-     - [Method Overloading](#overloading-methods)
-   - [Returning Objects](#returning-objects)
-   - [Unsupported Types](#note-on-unsupported-types)
-     - [Multiple Inheritance](#multiple-inheritance)
-     - [Hybrid Inheritance](#hybrid-inheritance)
+     - [Superclass Reference to Subclass Object](#superclass-reference-to-subclass-object)
+     - [Using `super`](#using-super)
+     - [Using `final` with Inheritance](using-final-with-inheritance)
+   - [Polymorphism Does Not Apply to Instance Variables](#polymorphism-does-not-apply-to-instance-variables)
+     - [Method Overloading](#method-overloading)
 
 ---
 
@@ -1741,7 +1731,7 @@ Derived Class Constructor Called with value 10
 
   **Explanation:** Class `D` would attempt to inherit from both class `B` and interface `C`, leading to a hybrid inheritance situation that is not allowed in Java.
 
-## 13. Superclass Reference to Subclass Object
+## Superclass Reference to Subclass Object
 
 A superclass reference variable can reference a subclass object. However, it will only have access to the members defined in the superclass.
 
@@ -1749,7 +1739,7 @@ A superclass reference variable can reference a subclass object. However, it wil
 Superclass ref = new Subclass(); // ref can only access methods defined in SUPERCLASS
 ```
 
-## 14. Using `super`
+## Using `super`
 
 The keyword `super` refers to the immediate superclass. It can be used in two forms:
 
@@ -1771,7 +1761,7 @@ The keyword `super` refers to the immediate superclass. It can be used in two fo
    super.member;
    ```
 
-## 15. Using `final` with Inheritance
+## Using `final` with Inheritance
 
 The `final` keyword can be used in three ways:
 
@@ -1796,7 +1786,7 @@ The `final` keyword can be used in three ways:
    }
    ```
 
-## 16. Polymorphism Does Not Apply to Instance Variables
+## Polymorphism Does Not Apply to Instance Variables
 
 Polymorphism does not apply to instance variables; they are hidden rather than overridden.
 
@@ -1817,17 +1807,28 @@ class Test {
 }
 ```
 
-## 17. Overloading Methods
+## Method Overloading
 
-In Java, methods can be overloaded, meaning multiple methods with the same name can exist if their parameter lists differ.
+- In Java, it is possible to define two or more methods within the same class that share the same name, as long as their parameter declarations are different.
+- Overloaded methods may have different return types, but the return type alone is insufficient to distinguish two versions of a method.
 
-```java
-class OverloadDemo {
-    void test(double a) {
-        System.out.println("Inside test(double) a: " + a);
+    ```java
+    class OverloadDemo {
+        void test(double a) {
+            System.out.println("Inside test(double) a: " + a);
+        }
     }
-}
-```
+    
+    class Overload {
+        public static void main(String[] args) {
+            OverloadDemo ob = new OverloadDemo();
+            int i = 88;
+            ob.test(i);        // this will invoke test(double)
+            ob.test(123.2);    // this will invoke test(double)
+        }
+    }
+    ```
+
 
 ## 18. Returning Objects
 
