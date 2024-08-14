@@ -1,9 +1,9 @@
 
 # Data Structures and Algorithms (DSA) in Java
-
-This repository is a comprehensive guide to Data Structures and Algorithms (DSA) using Java. It covers topics from basics to advanced, with detailed explanations and examples. 
+---
 
 ## Table of Contents
+
 1. [Arrays and ArrayLists](#arrays-and-arraylists)
    - [Arrays](#arrays)
    - [ArrayLists](#arraylists)
@@ -20,14 +20,37 @@ This repository is a comprehensive guide to Data Structures and Algorithms (DSA)
    - [StringBuffer](#stringbuffer)
    - [StringBuilder](#stringbuilder)
 5. [Sorting Techniques](#sorting-techniques)
-   - [Bubble Sort](#string)
-   - [Selection Sort](#stringbuffer)
-   - [Insertion Sort](#stringbuilder)
-   - [Cyclic Sort]()
-   - [Merge Sort]()
-   - [Quick Sort]()
-6. OOPs
-   - [Classes and Objects]()
+   - [Bubble Sort](#bubble-sort)
+   - [Selection Sort](#selection-sort)
+   - [Insertion Sort](#insertion-sort)
+   - [Cyclic Sort](#cyclic-sort)
+   - [Merge Sort](#merge-sort)
+   - [Quick Sort](#quick-sort)
+6. [Object-Oriented Programming](#object-oriented-programming)
+   - [Classes and Objects](#classes-and-objects)
+   - [Inheritance](#inheritance)
+     - [Single Inheritance](#single-inheritance)
+     - [Multilevel Inheritance](#multilevel-inheritance)
+     - [Hierarchical Inheritance](#hierarchical-inheritance)
+     - [Multiple Inheritance (Not Supported in Java)](#multiple-inheritance-not-supported-in-java)
+     - [Hybrid Inheritance (Not Supported in Java)](#hybrid-inheritance-not-supported-in-java)
+   - [Superclass Variable References Subclass Objects](#a-superclass-variable-can-reference-a-subclass-object)
+   - [Using `super`](#using-super)
+     - [Calling Superclass Constructor](#calling-superclass-constructor)
+     - [Accessing Superclass Members](#accessing-superclass-members)
+   - [Using `final`](#using-final)
+     - [Creating Named Constants](#creating-named-constants)
+     - [Preventing Method Overriding](#preventing-method-overriding)
+     - [Preventing Inheritance](#preventing-inheritance)
+   - [Polymorphism](#polymorphism)
+     - [Instance Variables](#polymorphism-does-not-apply-to-instance-variables)
+     - [Method Overloading](#overloading-methods)
+   - [Returning Objects](#returning-objects)
+   - [Unsupported Types](#note-on-unsupported-types)
+     - [Multiple Inheritance](#multiple-inheritance)
+     - [Hybrid Inheritance](#hybrid-inheritance)
+
+---
 
 ## Arrays and ArrayLists
 
