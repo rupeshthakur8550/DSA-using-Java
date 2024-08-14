@@ -1364,4 +1364,504 @@ Base Class Constructor Called with value 10
 Derived Class Constructor Called with value 10
 ```
 ---
+## 9. Packages in Java
+
+### Introduction to Packages
+- **Packages** in Java are containers for classes, helping to keep the class namespace compartmentalized. They ensure that class names do not collide with one another, even if multiple classes have the same name but are stored in different packages.
+- A package serves both as a **naming mechanism** and as a **visibility control mechanism**.
+
+### Declaring a Package
+- To create a package, use the `package` keyword followed by the package name.
+  ```java
+  package MyPackage;
+  ```
+- The package name should correspond to the directory structure in your file system. For example, if you declare a package named `MyPackage`, the corresponding `.class` files should be stored in a directory named `MyPackage`.
+
+### Package Hierarchy
+- Java packages can be nested, forming a hierarchy. This hierarchy must be reflected in the file system.
+  ```java
+  package java.awt.image;
+  ```
+- The above package should be stored in a directory structure like `java\awt\image` on a Windows system.
+
+### Example of Package Declaration and Usage
+- Suppose you have the following class in the package `shapes`:
+  ```java
+  // File: shapes/Circle.java
+  package shapes;
+
+  public class Circle {
+      public void draw() {
+          System.out.println("Drawing a circle");
+      }
+  }
+  ```
+- You can use this class in another file by importing the package:
+  ```java
+  // File: TestCircle.java
+  import shapes.Circle;
+
+  public class TestCircle {
+      public static void main(String[] args) {
+          Circle c = new Circle();
+          c.draw();
+      }
+  }
+  ```
+- When compiling, ensure that the directory structure matches the package structure. For instance, `shapes/Circle.java` should be stored in a directory named `shapes`.
+
+### Finding Packages in the Java Run-Time System
+The Java run-time system looks for packages using three mechanisms:
+1. **Current Working Directory**: By default, Java starts its search in the current working directory. If your package is in a subdirectory of the current directory, it will be found.
+2. **CLASSPATH Environmental Variable**: You can set the CLASSPATH environment variable to specify additional directories where Java should search for packages.
+3. **-classpath Option**: The `-classpath` option can be used with the `java` and `javac` commands to explicitly specify the path to your classes.
+
+### Access Control in Packages
+- When a package is imported, only the items within the package that are declared as `public` will be available to non-subclasses in the importing code.
+- For example:
+  ```java
+  // File: shapes/Square.java
+  package shapes;
+
+  class Square {
+      void draw() {
+          System.out.println("Drawing a square");
+      }
+  }
+  ```
+- The `Square` class cannot be accessed outside the `shapes` package because it lacks the `public` modifier.
+
+### Example Usage of Access Control
+  ```java
+  // File: shapes/Rectangle.java
+  package shapes;
+
+  public class Rectangle {
+      void draw() {
+          System.out.println("Drawing a rectangle");
+      }
+  }
+  ```
+  ```java
+  // File: TestRectangle.java
+  import shapes.Rectangle;
+
+  public class TestRectangle {
+      public static void main(String[] args) {
+          Rectangle r = new Rectangle();
+          r.draw(); // This works because Rectangle is public
+      }
+  }
+  ```
+
+### Summary
+- **Packages** organize classes and interfaces into namespaces, prevent name conflicts, and control access.
+- **Access Control** is enforced in packages, where only `public` members are accessible to classes outside the package.
+- Proper **directory structure** is crucial for packages to be recognized by the Java run-time system.
+---
+## 10. Understanding Static
+
+### Introduction to Static Members
+- **Static members** in Java, such as methods and variables, can be accessed before any objects of the class are created and without reference to any object.
+- The most common example of a static member is the `main()` method. It is declared as static because it must be called before any objects exist.
+
+### Static Methods
+- A **static method** belongs to the class rather than any particular object of the class.
+- **Accessing Static Data**: A static method can only access static data members. It cannot access non-static data members (instance variables) directly.
+- **Calling Non-Static Members**: A static method can call only other static methods and cannot call a non-static method directly. However, it can call a non-static method by explicitly specifying an object reference.
+
+### Example: Accessing Non-Static Members in a Static Context
+  ```java
+  public class Human {
+
+      String message = "Hello World";
+
+      public static void display(Human human) {
+          System.out.println(human.message);
+      }
+
+      public static void main(String[] args) {
+          Human kunal = new Human();
+          kunal.message = "Kunal's message";
+          Human.display(kunal);
+      }
+  }
+  ```
+- In the above example, the static method `display()` is able to access the non-static `message` variable through the `human` object reference.
+
+### Static Methods Characteristics
+- **Access**: A static method can be accessed directly by the class name and doesn’t need any object reference.
+- **No `this` or `super`**: A static method cannot refer to the `this` or `super` keywords, as it is not associated with any specific instance.
+
+### Static Blocks
+- **Static Blocks**: If you need to perform computations to initialize your static variables, you can use a static block. A static block gets executed exactly once, when the class is first loaded.
+  ```java
+  class UseStatic {
+      static int a = 3;
+      static int b;
+
+      static {
+          System.out.println("Static block initialized.");
+          b = a * 4;
+      }
+
+      static void meth(int x) {
+          System.out.println("x = " + x);
+          System.out.println("a = " + a);
+          System.out.println("b = " + b);
+      }
+
+      public static void main(String args[]) {
+          meth(42);
+      }
+  }
+  ```
+- **Output**:
+  ```
+  Static block initialized.
+  x = 42
+  a = 3
+  b = 12
+  ```
+- In the above example, when the `UseStatic` class is loaded, the static block runs, initializing `b` to `12`. The `main()` method is then called, which in turn calls the static method `meth()`.
+
+### Nested and Static Inner Classes
+- **Nested Classes**: Only nested classes can be static.
+- **Static Inner Classes**: A static inner class can have static variables, and it behaves like a static member of the outer class.
+
+### Example: Static Inner Class
+  ```java
+  public class Static {
+
+      static class Test {
+          String name;
+
+          public Test(String name) {
+              this.name = name;
+          }
+      }
+
+      public static void main(String[] args) {
+          Test a = new Test("Kunal");
+          Test b = new Test("Rahul");
+
+          System.out.println(a.name); // Kunal
+          System.out.println(b.name); // Rahul
+      }
+  }
+  ```
+- In the above example, `Test` is a static inner class. It does not have any instance of its outer class `Static`, and neither does `main`. However, both `main` and `Test` can have instances of each other.
+
+### Static Methods and Inheritance
+- **No Overriding**: You cannot override inherited static methods. Method overriding in Java is resolved at runtime based on the type of object, but static methods are class-level methods and are resolved at compile-time.
+- **Static Interface Methods**: Static interface methods are not inherited by implementing classes or sub-interfaces. 
+
+### Summary
+- **Static Members**: Static methods and variables belong to the class, not to any instance of the class.
+- **Access and Restrictions**: Static methods can only access static data, cannot use `this` or `super`, and cannot be overridden.
+- **Static Blocks**: Static blocks are used for initializing static variables and are executed when the class is loaded.
+- **Static Inner Classes**: Only nested classes can be static, and static inner classes can have static variables.
+---
+
+10. **Inheritance in Java:**
+    - Inheritance allows a class to use properties and methods of another class. The class that is inherited is called the superclass, and the class that inherits is called the subclass.
+    - The `extends` keyword is used to inherit a class.
+    
+    ```java
+    class Subclass extends Superclass {
+        // body of class
+    }
+    ```
+    - You can only specify one superclass for any subclass that you create. Java does not support the inheritance of multiple super classes into a single subclass. However, you can create a hierarchy of inheritance in which a subclass becomes a superclass of another subclass.
+    - Although a subclass includes all of the members of its superclass, it cannot access those members of the superclass that have been declared as `private`.
+
+## **Types of Inheritance** -
+
+    - **Single Inheritance**:  
+      This type of inheritance involves a subclass inheriting from a single superclass.  
+      **Example**:
+      ```java
+      class A {
+          void show() {
+              System.out.println("Inside class A");
+          }
+      }
+
+      class B extends A {
+          void display() {
+              System.out.println("Inside class B");
+          }
+      }
+      ```
+      **Explanation**: In the example, class `B` inherits from class `A`, demonstrating single inheritance.
+
+    - **Multilevel Inheritance**:  
+      This involves a class being derived from a class that is already derived from another class.  
+      **Example**:
+      ```java
+      class A {
+          void show() {
+              System.out.println("Inside class A");
+          }
+      }
+
+      class B extends A {
+          void display() {
+              System.out.println("Inside class B");
+          }
+      }
+
+      class C extends B {
+          void print() {
+              System.out.println("Inside class C");
+          }
+      }
+      ```
+      **Explanation**: In this case, class `C` inherits from class `B`, which in turn inherits from class `A`. This forms a chain, representing multilevel inheritance.
+
+    - **Hierarchical Inheritance**:  
+      This occurs when multiple classes inherit from a single superclass.  
+      **Example**:
+      ```java
+      class A {
+          void show() {
+              System.out.println("Inside class A");
+          }
+      }
+
+      class B extends A {
+          void display() {
+              System.out.println("Inside class B");
+          }
+      }
+
+      class C extends A {
+          void print() {
+              System.out.println("Inside class C");
+          }
+      }
+      ```
+      **Explanation**: Here, both class `B` and class `C` inherit from the same superclass `A`, which demonstrates hierarchical inheritance.
+
+    - **Multiple Inheritance (Not Supported in Java)**:  
+      Java does not support multiple inheritance, which refers to a class inheriting from more than one class. This is avoided to prevent the **diamond problem** where ambiguity arises if two parent classes have methods with the same signature.  
+      **Example**:
+      ```java
+      class A {
+          void show() {
+              System.out.println("Inside class A");
+          }
+      }
+
+      class B {
+          void show() {
+              System.out.println("Inside class B");
+          }
+      }
+
+      // class C extends A, B { // Error! Java does not support multiple inheritance.
+      //     void display() {
+      //         show(); // Which show() should be called?
+      //     }
+      // }
+      ```
+      **Explanation**: In the example, class `C` attempts to inherit from both `A` and `B`, but this is not allowed in Java. Java avoids this by allowing a class to implement multiple interfaces instead.
+
+    - **Hybrid Inheritance (Not Supported in Java)**:  
+      Hybrid inheritance is a combination of two or more types of inheritance. Java does not support hybrid inheritance through classes to avoid complexity and the diamond problem.  
+      **Example**:
+      ```java
+      class A {
+          void show() {
+              System.out.println("Inside class A");
+          }
+      }
+
+      class B extends A {
+          void display() {
+              System.out.println("Inside class B");
+          }
+      }
+
+      interface C {
+          void print();
+      }
+
+      // class D extends B, C { // Error! Java does not support hybrid inheritance through classes.
+      // }
+      ```
+      **Explanation**: In this example, class `D` would attempt to inherit from both class `B` and interface `C`, leading to a hybrid inheritance situation that is not allowed in Java. Hybrid inheritance can only be achieved through interfaces.
+
+
+Here is the continued explanation, incorporating the context provided:
+
+---
+
+11. **A Superclass Variable Can Reference a Subclass Object:**
+    - It is important to understand that it is the type of the reference variable—not the type of the object that it refers to—that determines what members can be accessed.
+    - When a reference to a subclass object is assigned to a superclass reference variable, you will have access only to those parts of the object defined by the superclass.
+
+    ```java
+    Superclass ref = new Subclass(); // ref can only access methods which are available in SUPERCLASS
+    ```
+
+12. **Using `super`:**
+    - Whenever a subclass needs to refer to its immediate superclass, it can do so by using the keyword `super`.
+    - `super` has two general forms:
+        1. The first calls the superclass’s constructor.
+        2. The second is used to access a member of the superclass that has been hidden by a member of a subclass.
+
+    ```java
+    class BoxWeight extends Box {
+        double weight;
+        
+        // constructor for BoxWeight
+        BoxWeight(double w, double h, double d, double m) {
+            super(w, h, d); // call superclass constructor
+            weight = m;
+        }
+    }
+    ```
+
+    - Here, `BoxWeight( )` calls `super( )` with the arguments `w`, `h`, and `d`. This causes the `Box` constructor to be called, which initializes `width`, `height`, and `depth` using these values. `BoxWeight` no longer initializes these values itself. It only needs to initialize the value unique to it: `weight`.
+    - Thus, `super( )` always refers to the superclass immediately above the calling class.
+
+13. **A Second Use for `super`:**
+    - The second form of `super` acts somewhat like `this`, except that it always refers to the superclass of the subclass in which it is used.
+
+    ```java
+    super.member;
+    ```
+
+    - Here, `member` can be either a method or an instance variable. This form of `super` is most applicable to situations in which member names of a subclass hide members by the same name in the superclass.
+
+14. **Using `final` with Inheritance:**
+
+    - The keyword `final` has three uses:
+        1. **Creating the equivalent of a named constant:**
+        
+            ```java
+            final int MAX = 100;
+            ```
+        
+        2. **Using `final` to Prevent Overriding:**
+            - To disallow a method from being overridden, specify `final` as a modifier at the start of its declaration.
+            - Methods declared as `final` cannot be overridden.
+        
+            ```java
+            class A {
+                final void method() {
+                    // method body
+                }
+            }
+            ```
+        
+        3. **Using `final` to Prevent Inheritance:**
+            - To prevent a class from being inherited, precede the class declaration with `final`.
+            
+            ```java
+            final class FinalClass {
+                // class body
+            }
+            ```
+
+            - Note: Declaring a class as `final` implicitly declares all of its methods as `final`, too.
+            - It is illegal to declare a class as both `abstract` and `final` since an abstract class is incomplete by itself and relies upon its subclasses to provide complete implementations.
+
+15. **Polymorphism does not apply to instance variables:**
+    - Instance variables are not overridden; they are hidden. Therefore, polymorphism does not apply to instance variables. The reference type determines which instance variables are accessible.
+
+    ```java
+    class A {
+        int x = 10;
+    }
+
+    class B extends A {
+        int x = 20;
+    }
+
+    class Test {
+        public static void main(String[] args) {
+            A a = new B();
+            System.out.println(a.x); // prints 10
+        }
+    }
+    ```
+
+15. **Overloading Methods:**
+    - In Java, it is possible to define two or more methods within the same class that share the same name, as long as their parameter declarations are different.
+    - Overloaded methods may have different return types, but the return type alone is insufficient to distinguish two versions of a method.
+
+    ```java
+    class OverloadDemo {
+        void test(double a) {
+            System.out.println("Inside test(double) a: " + a);
+        }
+    }
+    
+    class Overload {
+        public static void main(String[] args) {
+            OverloadDemo ob = new OverloadDemo();
+            int i = 88;
+            ob.test(i);        // this will invoke test(double)
+            ob.test(123.2);    // this will invoke test(double)
+        }
+    }
+    ```
+
+16. **Returning Objects:**
+
+    - Java allows you to return objects from methods. When a method returns an object, a reference to that object is returned to the calling routine.
+
+    ```java
+    class Test {
+        int a;
+        Test(int i) {
+            a = i;
+        }
+        Test incrByTen() {
+            Test temp = new Test(a + 10);
+            return temp;
+        }
+    }
+
+    class RetOb {
+        public static void main(String[] args) {
+            Test ob1 = new Test(2);
+            Test ob2;
+            ob2 = ob1.incrByTen();
+            System.out.println("ob1.a: " + ob1.a); // prints 2
+            System.out.println("ob2.a: " + ob2.a); // prints 12
+        }
+    }
+    ```
+
+    - As you can see, each time `incrByTen( )` is invoked, a new object is created, and a reference to it is returned to the calling routine.
+
+17. **Note on Unsupported Types:**
+    - **Multiple Inheritance:** Java does not support multiple inheritance (a class cannot inherit from more than one class) due to the "diamond problem." However, multiple inheritance can be achieved through interfaces.
+
+        ```java
+        interface A {
+            void methodA();
+        }
+
+        interface B {
+            void methodB();
+        }
+
+        class C implements A, B {
+            public void methodA() {
+                // implementation
+            }
+
+            public void methodB() {
+                // implementation
+            }
+        }
+        ```
+
+---
+
+
 This README file provides a comprehensive guide to the content of your DSA repository, including examples and detailed explanations.
