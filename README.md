@@ -1917,6 +1917,37 @@ Here is the continuation of the guide, incorporating the new concepts and exampl
     ```
 - In the above example, `display()` in `B` overrides `display()` in `A`. When `display()` is called using a reference of type `A` but pointing to an object of type `B`, the version in `B` is executed.
 
+## Overriding and Access Modifiers
+
+- **Access Modifiers in Overriding:**
+    - When overriding methods, the access modifier of the overriding method must be the same or more accessible than the method in the superclass or interface. For example, if a method in the superclass is `protected`, it can be overridden with `protected` or `public`.
+
+    ```java
+    class Parent {
+        protected void display() {
+            System.out.println("Parent display.");
+        }
+    }
+
+    class Child extends Parent {
+        @Override
+        public void display() {
+            System.out.println("Child display.");
+        }
+    }
+
+    public class Test {
+        public static void main(String[] args) {
+            Child child = new Child();
+            child.display(); // Output: Child display.
+        }
+    }
+    ```
+
+- **Key Points:**
+    - The overriding method's access level must be the same or more accessible than the method in the superclass.
+    - This ensures that the subclass method is compatible with the superclass method.
+
 ## Dynamic Method Dispatch:
 - Dynamic method dispatch is the mechanism by which a call to an overridden method is resolved at run time, rather than compile time. This is how Java implements run-time polymorphism.
 - A superclass reference variable can refer to a subclass object. When an overridden method is called through a superclass reference, Java determines which version of that method to execute based on the type of the object being referred to at the time the call occurs. Thus, this determination is made at run time.
