@@ -58,7 +58,7 @@
      - [Dynamic Method Dispatch](#dynamic-method-dispatch)
    - **IV. [Abstraction in Java](#abstraction-in-java)**
      - [Abstract Classes and Methods](#abstract-classes-and-methods)
-   - **V. [Encapsulation](#encapsulation)
+   - **V. [Encapsulation](#encapsulation)**
      - [Definition and Overview](#definition-and-overview)
      - [Access Modifiers](#access-modifiers)
         - [Public](#public)
@@ -72,7 +72,7 @@
      - [Benefits of Encapsulation](#benefits-of-encapsulation)
      - [Example of Encapsulation in Action](#example-of-encapsulation-in-action)
  
-7. [Interfaces in Java](#interfaces-in-java)**
+7. [Interfaces in Java](#interfaces-in-java)
      - [Overview](#overview)
      - [Abstract Classes vs. Interfaces](#abstract-classes-vs-interfaces)
      - [Multiple Inheritance and Interfaces](#multiple-inheritance-and-interfaces)
