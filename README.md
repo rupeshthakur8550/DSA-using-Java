@@ -27,7 +27,7 @@
    - [Merge Sort](#merge-sort)
    - [Quick Sort](#quick-sort)
 6. [Object Oriented Programming](#object-oriented-programming)
-   - [1. Classes and Objects](#1.classes-and-objects)
+   - [1. Classes and Objects](#1-classes-and-objects)
      - [Classes](#classes)
      - [Objects](#objects)
    - [Inheritance](#inheritance)
