@@ -40,7 +40,7 @@
      - [Packages in Java](#packages-in-java)
      - [Access Control in Packages](#access-control-in-packages)
      - [Understanding Static](#understanding-static)
-   - [Inheritance in Java](#inheritance-in-java)
+   - [2. Inheritance in Java](#inheritance-in-java)
      - [Constructors in Inheritance](#constructors-in-inheritance)
      - [Types of Inheritance](#types-of-inheritance)
          - [Single Inheritance](#single-inheritance)
@@ -51,7 +51,7 @@
      - [Superclass Reference to Subclass Object](#superclass-reference-to-subclass-object)
      - [Using `super`](#using-super)
      - [Using `final` with Inheritance](using-final-with-inheritance)
-   - [Polymorphism Does Not Apply to Instance Variables](#polymorphism-does-not-apply-to-instance-variables)
+   - [3. Polymorphism Does Not Apply to Instance Variables](#polymorphism-does-not-apply-to-instance-variables)
      - [Method Overloading](#method-overloading)
 
 ---
