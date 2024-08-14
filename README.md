@@ -1824,6 +1824,9 @@ The `final` keyword can be used in three ways:
        // class body
    }
    ```
+Polymorphism
+
+Polymorphism allows objects of different classes to be treated as objects of a common superclass. It is one of the key principles of OOP that facilitates flexibility and the ability to use a unified interface for different underlying forms (data types).
 
 ## Polymorphism Does Not Apply to Instance Variables
 
@@ -1927,6 +1930,12 @@ Here is the continuation of the guide, incorporating the new concepts and exampl
     ```
 - In the above example, `display()` in `B` overrides `display()` in `A`. When `display()` is called using a reference of type `A` but pointing to an object of type `B`, the version in `B` is executed.
 
+## Late Binding and Early Binding
+
+- **Early Binding (Compile-Time Binding):** Method binding that occurs during compilation. This involves method overloading where the method to be called is determined at compile time based on the method signature.
+
+- **Late Binding (Run-Time Binding):** Method binding that occurs during runtime. This involves method overriding where the method to be invoked is determined at runtime based on the object's actual type.
+
 ## Overriding and Access Modifiers
 
 - **Access Modifiers in Overriding:**
@@ -2017,6 +2026,8 @@ Here's the revised and organized guide with **Abstraction** and **Interfaces** a
 ---
 
 # Abstraction in Java
+
+Abstraction is a principle that involves hiding the complex implementation details and showing only the essential features of an object.
 
 ## Abstract Classes and Methods
 
