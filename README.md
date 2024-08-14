@@ -27,7 +27,7 @@
    - [Merge Sort](#merge-sort)
    - [Quick Sort](#quick-sort)
 6. [Object Oriented Programming](#object-oriented-programming)
-   - [1. Classes and Objects](#classes-and-objects)
+   - 1. [Classes and Objects](#classes-and-objects)
      - [Classes](#classes)
      - [Objects](#objects)
      - [Dot Operator](#dot-operator)
@@ -40,7 +40,7 @@
      - [Packages in Java](#packages-in-java)
      - [Access Control in Packages](#access-control-in-packages)
      - [Understanding Static](#understanding-static)
-   - [2. Inheritance in Java](#inheritance-in-java)
+   - 2. [Inheritance in Java](#inheritance-in-java)
      - [Constructors in Inheritance](#constructors-in-inheritance)
      - [Types of Inheritance](#types-of-inheritance)
          - [Single Inheritance](#single-inheritance)
@@ -51,10 +51,21 @@
      - [Superclass Reference to Subclass Object](#superclass-reference-to-subclass-object)
      - [Using `super`](#using-super)
      - [Using `final` with Inheritance](using-final-with-inheritance)
-   - [3. Polymorphism Does Not Apply to Instance Variables](#polymorphism-does-not-apply-to-instance-variables)
+   - 3. [Polymorphism Does Not Apply to Instance Variables](#polymorphism-does-not-apply-to-instance-variables)
      - [Method Overloading](#method-overloading)
      - [Method Overriding](#method-overriding)
      - [Dynamic Method Dispatch](#dynamic-method-dispatch)
+
+- 4. [Abstraction in Java](#abstraction-in-java)
+   - [Abstract Classes and Methods](#abstract-classes-and-methods)
+
+- 5. [Interfaces in Java](#interfaces-in-java)
+   - [Overview](#overview)
+   - [Abstract Classes vs. Interfaces](#abstract-classes-vs-interfaces)
+   - [Multiple Inheritance and Interfaces](#multiple-inheritance-and-interfaces)
+   - [Dynamic Method Resolution and Interfaces](#dynamic-method-resolution-and-interfaces)
+   - [Nested Interfaces](#nested-interfaces)
+   - [Default and Static Interface Methods](#default-and-static-interface-methods)
 
 ---
 
