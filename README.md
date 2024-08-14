@@ -1563,8 +1563,13 @@ The Java run-time system looks for packages using three mechanisms:
 - **Static Inner Classes**: Only nested classes can be static, and static inner classes can have static variables.
 ---
 
-## 12. Inheritance in Java:
-    - Inheritance allows a class to use properties and methods of another class. The class that is inherited is called the superclass, and the class that inherits is called the subclass.
+Here’s a revised version of your content for a GitHub README that covers inheritance in Java, including types, examples, and key concepts:
+
+---
+
+## 12. Inheritance in Java
+
+- Inheritance allows a class to use properties and methods of another class. The class that is inherited is called the superclass, and the class that inherits is called the subclass.
     - The `extends` keyword is used to inherit a class.
     
     ```java
@@ -1575,293 +1580,270 @@ The Java run-time system looks for packages using three mechanisms:
     - You can only specify one superclass for any subclass that you create. Java does not support the inheritance of multiple super classes into a single subclass. However, you can create a hierarchy of inheritance in which a subclass becomes a superclass of another subclass.
     - Although a subclass includes all of the members of its superclass, it cannot access those members of the superclass that have been declared as `private`.
 
- **Types of Inheritance** -
+## **Types of Inheritance** -
 
-    - **Single Inheritance**:  
-      This type of inheritance involves a subclass inheriting from a single superclass.  
-      **Example**:
-      ```java
-      class A {
-          void show() {
-              System.out.println("Inside class A");
-          }
+
+- **Single Inheritance:**  
+  Involves a subclass inheriting from a single superclass.
+
+  **Example:**
+  ```java
+  class A {
+      void show() {
+          System.out.println("Inside class A");
+      }
+  }
+
+  class B extends A {
+      void display() {
+          System.out.println("Inside class B");
+      }
+  }
+  ```
+
+  **Explanation:** Class `B` inherits from class `A`, demonstrating single inheritance.
+
+- **Multilevel Inheritance:**  
+  A class is derived from a class that is already derived from another class.
+
+  **Example:**
+  ```java
+  class A {
+      void show() {
+          System.out.println("Inside class A");
+      }
+  }
+
+  class B extends A {
+      void display() {
+          System.out.println("Inside class B");
+      }
+  }
+
+  class C extends B {
+      void print() {
+          System.out.println("Inside class C");
+      }
+  }
+  ```
+
+  **Explanation:** Class `C` inherits from class `B`, which in turn inherits from class `A`, forming a chain.
+
+- **Hierarchical Inheritance:**  
+  Multiple classes inherit from a single superclass.
+
+  **Example:**
+  ```java
+  class A {
+      void show() {
+          System.out.println("Inside class A");
+      }
+  }
+
+  class B extends A {
+      void display() {
+          System.out.println("Inside class B");
+      }
+  }
+
+  class C extends A {
+      void print() {
+          System.out.println("Inside class C");
+      }
+  }
+  ```
+
+  **Explanation:** Both class `B` and class `C` inherit from the same superclass `A`.
+
+- **Multiple Inheritance (Not Supported in Java):**  
+  Java does not support multiple inheritance through classes to avoid the **diamond problem**. However, multiple inheritance can be achieved through interfaces.
+
+  **Example:**
+  ```java
+  class A {
+      void show() {
+          System.out.println("Inside class A");
+      }
+  }
+
+  class B {
+      void show() {
+          System.out.println("Inside class B");
+      }
+  }
+
+  // class C extends A, B { // Error! Java does not support multiple inheritance.
+  // }
+  ```
+
+  **Explanation:** Class `C` attempts to inherit from both `A` and `B`, which is not allowed in Java.
+
+- **Hybrid Inheritance (Not Supported in Java):**  
+  A combination of two or more types of inheritance. Java does not support hybrid inheritance through classes but allows it through interfaces.
+
+  **Example:**
+  ```java
+  class A {
+      void show() {
+          System.out.println("Inside class A");
+      }
+  }
+
+  class B extends A {
+      void display() {
+          System.out.println("Inside class B");
+      }
+  }
+
+  interface C {
+      void print();
+  }
+
+  // class D extends B implements C { // Error! Java does not support hybrid inheritance through classes.
+  // }
+  ```
+
+  **Explanation:** Class `D` would attempt to inherit from both class `B` and interface `C`, leading to a hybrid inheritance situation that is not allowed in Java.
+
+## 13. Superclass Reference to Subclass Object
+
+A superclass reference variable can reference a subclass object. However, it will only have access to the members defined in the superclass.
+
+```java
+Superclass ref = new Subclass(); // ref can only access methods defined in SUPERCLASS
+```
+
+## 14. Using `super`
+
+The keyword `super` refers to the immediate superclass. It can be used in two forms:
+
+1. **Calling the Superclass Constructor:**  
+   ```java
+   class BoxWeight extends Box {
+       double weight;
+       
+       BoxWeight(double w, double h, double d, double m) {
+           super(w, h, d); // call superclass constructor
+           weight = m;
+       }
+   }
+   ```
+   **Explanation:** Calls the superclass constructor to initialize values inherited from the superclass.
+
+2. **Accessing Superclass Members:**  
+   ```java
+   super.member;
+   ```
+
+## 15. Using `final` with Inheritance
+
+The `final` keyword can be used in three ways:
+
+1. **Creating Constants:**
+   ```java
+   final int MAX = 100;
+   ```
+
+2. **Preventing Method Overriding:**
+   ```java
+   class A {
+       final void method() {
+           // method body
+       }
+   }
+   ```
+
+3. **Preventing Inheritance:**
+   ```java
+   final class FinalClass {
+       // class body
+   }
+   ```
+
+## 16. Polymorphism Does Not Apply to Instance Variables
+
+Polymorphism does not apply to instance variables; they are hidden rather than overridden.
+
+```java
+class A {
+    int x = 10;
+}
+
+class B extends A {
+    int x = 20;
+}
+
+class Test {
+    public static void main(String[] args) {
+        A a = new B();
+        System.out.println(a.x); // prints 10
+    }
+}
+```
+
+## 17. Overloading Methods
+
+In Java, methods can be overloaded, meaning multiple methods with the same name can exist if their parameter lists differ.
+
+```java
+class OverloadDemo {
+    void test(double a) {
+        System.out.println("Inside test(double) a: " + a);
+    }
+}
+```
+
+## 18. Returning Objects
+
+Methods in Java can return objects.
+
+```java
+class Test {
+    int a;
+    Test(int i) {
+        a = i;
+    }
+    Test incrByTen() {
+        Test temp = new Test(a + 10);
+        return temp;
+    }
+}
+
+class RetOb {
+    public static void main(String[] args) {
+        Test ob1 = new Test(2);
+        Test ob2;
+        ob2 = ob1.incrByTen();
+        System.out.println("ob1.a: " + ob1.a); // prints 2
+        System.out.println("ob2.a: " + ob2.a); // prints 12
+    }
+}
+```
+
+## 19. Note on Unsupported Types
+
+- **Multiple Inheritance:** Java does not support multiple inheritance through classes, but it can be achieved through interfaces.
+
+  ```java
+  interface A {
+      void methodA();
+  }
+
+  interface B {
+      void methodB();
+  }
+
+  class C implements A, B {
+      public void methodA() {
+          // implementation
       }
 
-      class B extends A {
-          void display() {
-              System.out.println("Inside class B");
-          }
+      public void methodB() {
+          // implementation
       }
-      ```
-      **Explanation**: In the example, class `B` inherits from class `A`, demonstrating single inheritance.
-
-    - **Multilevel Inheritance**:  
-      This involves a class being derived from a class that is already derived from another class.  
-      **Example**:
-      ```java
-      class A {
-          void show() {
-              System.out.println("Inside class A");
-          }
-      }
-
-      class B extends A {
-          void display() {
-              System.out.println("Inside class B");
-          }
-      }
-
-      class C extends B {
-          void print() {
-              System.out.println("Inside class C");
-          }
-      }
-      ```
-      **Explanation**: In this case, class `C` inherits from class `B`, which in turn inherits from class `A`. This forms a chain, representing multilevel inheritance.
-
-    - **Hierarchical Inheritance**:  
-      This occurs when multiple classes inherit from a single superclass.  
-      **Example**:
-      ```java
-      class A {
-          void show() {
-              System.out.println("Inside class A");
-          }
-      }
-
-      class B extends A {
-          void display() {
-              System.out.println("Inside class B");
-          }
-      }
-
-      class C extends A {
-          void print() {
-              System.out.println("Inside class C");
-          }
-      }
-      ```
-      **Explanation**: Here, both class `B` and class `C` inherit from the same superclass `A`, which demonstrates hierarchical inheritance.
-
-    - **Multiple Inheritance (Not Supported in Java)**:  
-      Java does not support multiple inheritance, which refers to a class inheriting from more than one class. This is avoided to prevent the **diamond problem** where ambiguity arises if two parent classes have methods with the same signature.  
-      **Example**:
-      ```java
-      class A {
-          void show() {
-              System.out.println("Inside class A");
-          }
-      }
-
-      class B {
-          void show() {
-              System.out.println("Inside class B");
-          }
-      }
-
-      // class C extends A, B { // Error! Java does not support multiple inheritance.
-      //     void display() {
-      //         show(); // Which show() should be called?
-      //     }
-      // }
-      ```
-      **Explanation**: In the example, class `C` attempts to inherit from both `A` and `B`, but this is not allowed in Java. Java avoids this by allowing a class to implement multiple interfaces instead.
-
-    - **Hybrid Inheritance (Not Supported in Java)**:  
-      Hybrid inheritance is a combination of two or more types of inheritance. Java does not support hybrid inheritance through classes to avoid complexity and the diamond problem.  
-      **Example**:
-      ```java
-      class A {
-          void show() {
-              System.out.println("Inside class A");
-          }
-      }
-
-      class B extends A {
-          void display() {
-              System.out.println("Inside class B");
-          }
-      }
-
-      interface C {
-          void print();
-      }
-
-      // class D extends B, C { // Error! Java does not support hybrid inheritance through classes.
-      // }
-      ```
-      **Explanation**: In this example, class `D` would attempt to inherit from both class `B` and interface `C`, leading to a hybrid inheritance situation that is not allowed in Java. Hybrid inheritance can only be achieved through interfaces.
-
-
-Here is the continued explanation, incorporating the context provided:
+  }
+  ```
 
 ---
-
-## 13. A Superclass Variable Can Reference a Subclass Object:
-    - It is important to understand that it is the type of the reference variable—not the type of the object that it refers to—that determines what members can be accessed.
-    - When a reference to a subclass object is assigned to a superclass reference variable, you will have access only to those parts of the object defined by the superclass.
-
-    ```java
-    Superclass ref = new Subclass(); // ref can only access methods which are available in SUPERCLASS
-    ```
-
-## 14. Using `super`:
-    - Whenever a subclass needs to refer to its immediate superclass, it can do so by using the keyword `super`.
-    - `super` has two general forms:
-        1. The first calls the superclass’s constructor.
-        2. The second is used to access a member of the superclass that has been hidden by a member of a subclass.
-
-    ```java
-    class BoxWeight extends Box {
-        double weight;
-        
-        // constructor for BoxWeight
-        BoxWeight(double w, double h, double d, double m) {
-            super(w, h, d); // call superclass constructor
-            weight = m;
-        }
-    }
-    ```
-
-    - Here, `BoxWeight( )` calls `super( )` with the arguments `w`, `h`, and `d`. This causes the `Box` constructor to be called, which initializes `width`, `height`, and `depth` using these values. `BoxWeight` no longer initializes these values itself. It only needs to initialize the value unique to it: `weight`.
-    - Thus, `super( )` always refers to the superclass immediately above the calling class.
-
-## 15. A Second Use for `super`:
-    - The second form of `super` acts somewhat like `this`, except that it always refers to the superclass of the subclass in which it is used.
-
-    ```java
-    super.member;
-    ```
-
-    - Here, `member` can be either a method or an instance variable. This form of `super` is most applicable to situations in which member names of a subclass hide members by the same name in the superclass.
-
-## 16. Using `final` with Inheritance:
-
-    - The keyword `final` has three uses:
-        1. **Creating the equivalent of a named constant:**
-        
-            ```java
-            final int MAX = 100;
-            ```
-        
-        2. **Using `final` to Prevent Overriding:**
-            - To disallow a method from being overridden, specify `final` as a modifier at the start of its declaration.
-            - Methods declared as `final` cannot be overridden.
-        
-            ```java
-            class A {
-                final void method() {
-                    // method body
-                }
-            }
-            ```
-        
-        3. **Using `final` to Prevent Inheritance:**
-            - To prevent a class from being inherited, precede the class declaration with `final`.
-            
-            ```java
-            final class FinalClass {
-                // class body
-            }
-            ```
-
-            - Note: Declaring a class as `final` implicitly declares all of its methods as `final`, too.
-            - It is illegal to declare a class as both `abstract` and `final` since an abstract class is incomplete by itself and relies upon its subclasses to provide complete implementations.
-
-## 17. Polymorphism does not apply to instance variables:
-    - Instance variables are not overridden; they are hidden. Therefore, polymorphism does not apply to instance variables. The reference type determines which instance variables are accessible.
-
-    ```java
-    class A {
-        int x = 10;
-    }
-
-    class B extends A {
-        int x = 20;
-    }
-
-    class Test {
-        public static void main(String[] args) {
-            A a = new B();
-            System.out.println(a.x); // prints 10
-        }
-    }
-    ```
-
-## 18. Overloading Methods:
-    - In Java, it is possible to define two or more methods within the same class that share the same name, as long as their parameter declarations are different.
-    - Overloaded methods may have different return types, but the return type alone is insufficient to distinguish two versions of a method.
-
-    ```java
-    class OverloadDemo {
-        void test(double a) {
-            System.out.println("Inside test(double) a: " + a);
-        }
-    }
-    
-    class Overload {
-        public static void main(String[] args) {
-            OverloadDemo ob = new OverloadDemo();
-            int i = 88;
-            ob.test(i);        // this will invoke test(double)
-            ob.test(123.2);    // this will invoke test(double)
-        }
-    }
-    ```
-
-## 19. Returning Objects:
-
-    - Java allows you to return objects from methods. When a method returns an object, a reference to that object is returned to the calling routine.
-
-    ```java
-    class Test {
-        int a;
-        Test(int i) {
-            a = i;
-        }
-        Test incrByTen() {
-            Test temp = new Test(a + 10);
-            return temp;
-        }
-    }
-
-    class RetOb {
-        public static void main(String[] args) {
-            Test ob1 = new Test(2);
-            Test ob2;
-            ob2 = ob1.incrByTen();
-            System.out.println("ob1.a: " + ob1.a); // prints 2
-            System.out.println("ob2.a: " + ob2.a); // prints 12
-        }
-    }
-    ```
-
-    - As you can see, each time `incrByTen( )` is invoked, a new object is created, and a reference to it is returned to the calling routine.
-
-## 20. Note on Unsupported Types:
-    - **Multiple Inheritance:** Java does not support multiple inheritance (a class cannot inherit from more than one class) due to the "diamond problem." However, multiple inheritance can be achieved through interfaces.
-
-        ```java
-        interface A {
-            void methodA();
-        }
-
-        interface B {
-            void methodB();
-        }
-
-        class C implements A, B {
-            public void methodA() {
-                // implementation
-            }
-
-            public void methodB() {
-                // implementation
-            }
-        }
-        ```
-
----
-
 
 This README file provides a comprehensive guide to the content of your DSA repository, including examples and detailed explanations.
