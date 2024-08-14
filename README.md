@@ -1639,7 +1639,7 @@ Derived Class Constructor Called with value 10
 
   **Explanation:** Class `B` inherits from class `A`, demonstrating single inheritance.
 
-- **Multilevel Inheritance:**  
+## Multilevel Inheritance:  
   A class is derived from a class that is already derived from another class.
 
   **Example:**
@@ -1665,7 +1665,7 @@ Derived Class Constructor Called with value 10
 
   **Explanation:** Class `C` inherits from class `B`, which in turn inherits from class `A`, forming a chain.
 
-- **Hierarchical Inheritance:**  
+## Hierarchical Inheritance:  
   Multiple classes inherit from a single superclass.
 
   **Example:**
@@ -1691,7 +1691,7 @@ Derived Class Constructor Called with value 10
 
   **Explanation:** Both class `B` and class `C` inherit from the same superclass `A`.
 
-- **Multiple Inheritance (Not Supported in Java):**  
+## Multiple Inheritance (Not Supported in Java):  
   Java does not support multiple inheritance through classes to avoid the **diamond problem**. However, multiple inheritance can be achieved through interfaces.
 
   **Example:**
@@ -1714,7 +1714,7 @@ Derived Class Constructor Called with value 10
 
   **Explanation:** Class `C` attempts to inherit from both `A` and `B`, which is not allowed in Java.
 
-- **Hybrid Inheritance (Not Supported in Java):**  
+## Hybrid Inheritance (Not Supported in Java): 
   A combination of two or more types of inheritance. Java does not support hybrid inheritance through classes but allows it through interfaces.
 
   **Example:**
