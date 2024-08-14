@@ -58,7 +58,21 @@
      - [Dynamic Method Dispatch](#dynamic-method-dispatch)
    - **IV. [Abstraction in Java](#abstraction-in-java)**
      - [Abstract Classes and Methods](#abstract-classes-and-methods)
-   - **V. [Interfaces in Java](#interfaces-in-java)**
+   - **V. [Encapsulation](#encapsulation)
+     - [Definition and Overview](#definition-and-overview)
+     - [Access Modifiers](#access-modifiers)
+        - [Public](#public)
+        - [Private](#private)
+        - [Protected](#protected)
+        - [Default (Package-Private)](#default-package-private)
+     - [Getter and Setter Methods](#getter-and-setter-methods)
+     - [Getter Methods](#getter-methods)
+     - [Setter Methods](#setter-methods)
+     - [Validation in Setters](#validation-in-setters)
+     - [Benefits of Encapsulation](#benefits-of-encapsulation)
+     - [Example of Encapsulation in Action](#example-of-encapsulation-in-action)
+ 
+7. [Interfaces in Java](#interfaces-in-java)**
      - [Overview](#overview)
      - [Abstract Classes vs. Interfaces](#abstract-classes-vs-interfaces)
      - [Multiple Inheritance and Interfaces](#multiple-inheritance-and-interfaces)
@@ -2061,6 +2075,260 @@ Abstraction is a principle that involves hiding the complex implementation detai
     - An abstract class can have both abstract and concrete methods.
     - Any class with abstract methods must be declared as abstract.
     - Abstract classes can include constructors, but they cannot be instantiated directly.
+
+---
+
+# Encapsulation
+Encapsulation is a core principle of Object-Oriented Programming (OOP) that involves bundling the data (attributes) and methods (functions) that operate on the data into a single unit or class. It also includes restricting access to some of the object's components, which prevents unintended interference and misuse of the data. Encapsulation is achieved using access modifiers and getter and setter methods.
+
+## I. Definition and Overview
+
+Encapsulation involves:
+- **Data Hiding:** Hiding the internal state of the object from the outside world.
+- **Public Interface:** Providing methods to access and modify the object's state.
+
+### Example
+
+```java
+class Person {
+    // Private fields
+    private String name;
+    private int age;
+
+    // Public constructor
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Public getter for name
+    public String getName() {
+        return name;
+    }
+
+    // Public setter for name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Public getter for age
+    public int getAge() {
+        return age;
+    }
+
+    // Public setter for age with validation
+    public void setAge(int age) {
+        if (age > 0) {
+            this.age = age;
+        }
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Person person = new Person("Alice", 30);
+        System.out.println(person.getName()); // Output: Alice
+        person.setAge(35);
+        System.out.println(person.getAge());  // Output: 35
+    }
+}
+```
+
+## II. Access Modifiers
+
+Access modifiers control the visibility of class members (fields, methods) to other classes.
+
+| Modifier | Class | Package | Subclass (same pkg) | Subclass (diff pkg) | World |
+|----------|-------|---------|---------------------|---------------------|-------|
+| `public` |   +   |    +    |          +          |          +          |   +   |
+| `protected` |   +   |    +    |          +          |          +          |       |
+| Default (package-private) |   +   |    +    |          +          |                     |       |
+| `private` |   +   |         |                     |                     |       |
+
+### 1. Public
+
+- **Definition:** Members are accessible from any other class.
+- **Usage:** Use `public` when you want the members to be accessible from anywhere.
+
+    ```java
+    public class PublicExample {
+        public int publicField;
+
+        public void publicMethod() {
+            // Public method code
+        }
+    }
+    ```
+
+### 2. Private
+
+- **Definition:** Members are accessible only within the class they are declared.
+- **Usage:** Use `private` for data that should not be accessed directly from outside the class.
+
+    ```java
+    class PrivateExample {
+        private int privateField;
+
+        private void privateMethod() {
+            // Private method code
+        }
+    }
+    ```
+
+### 3. Protected
+
+- **Definition:** Members are accessible within the same package and by subclasses.
+- **Usage:** Use `protected` to allow access within the package and to subclasses in other packages.
+
+    ```java
+    class ProtectedExample {
+        protected int protectedField;
+
+        protected void protectedMethod() {
+            // Protected method code
+        }
+    }
+    ```
+
+### 4. Default (Package-Private)
+
+- **Definition:** Members are accessible only within the same package.
+- **Usage:** If no access modifier is specified, it defaults to package-private.
+
+    ```java
+    class DefaultExample {
+        int defaultField;
+
+        void defaultMethod() {
+            // Default method code
+        }
+    }
+    ```
+
+## III. Getter and Setter Methods
+
+Getters and setters are used to access and modify the private fields of a class. They provide a controlled way to access and update private data.
+
+### 1. Getter Methods
+
+Getters retrieve the value of private fields.
+
+- **Example:**
+
+    ```java
+    class Student {
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+    }
+    ```
+
+### 2. Setter Methods
+
+Setters update the value of private fields.
+
+- **Example:**
+
+    ```java
+    class Student {
+        private String name;
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+    ```
+
+### 3. Validation in Setters
+
+Setters can include validation logic to ensure fields are set to valid values.
+
+- **Example:**
+
+    ```java
+    class Account {
+        private double balance;
+
+        public void setBalance(double balance) {
+            if (balance >= 0) {
+                this.balance = balance;
+            } else {
+                System.out.println("Balance cannot be negative.");
+            }
+        }
+
+        public double getBalance() {
+            return balance;
+        }
+    }
+    ```
+
+## IV. Benefits of Encapsulation
+
+### 1. Data Hiding
+
+Encapsulation hides the internal state of an object, protecting its integrity by preventing unintended or harmful modifications.
+
+### 2. Controlled Access
+
+Encapsulation provides a controlled way to access and modify an object's data, allowing for validation and enforcing rules.
+
+### 3. Increased Flexibility
+
+Encapsulation allows changes to the internal implementation without affecting the code that uses the class.
+
+### 4. Improved Maintainability
+
+Encapsulation centralizes data access logic, making code maintenance easier and changes more manageable.
+
+## V. Example of Encapsulation in Action
+
+- **Example:**
+
+    ```java
+    class BankAccount {
+        private double balance;
+
+        // Constructor
+        public BankAccount(double initialBalance) {
+            if (initialBalance > 0) {
+                this.balance = initialBalance;
+            } else {
+                this.balance = 0;
+            }
+        }
+
+        // Public method to deposit money
+        public void deposit(double amount) {
+            if (amount > 0) {
+                balance += amount;
+            }
+        }
+
+        // Public method to withdraw money
+        public void withdraw(double amount) {
+            if (amount > 0 && amount <= balance) {
+                balance -= amount;
+            }
+        }
+
+        // Public method to get balance
+        public double getBalance() {
+            return balance;
+        }
+    }
+
+    public class Test {
+        public static void main(String[] args) {
+            BankAccount account = new BankAccount(1000);
+            account.deposit(500);
+            account.withdraw(200);
+            System.out.println("Current balance: $" + account.getBalance()); // Output: Current balance: $1300
+        }
+    }
+    ```
 
 ---
 
