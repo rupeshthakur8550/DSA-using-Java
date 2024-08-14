@@ -1530,9 +1530,6 @@ The Java run-time system looks for packages using three mechanisms:
 - **Access and Restrictions**: Static methods can only access static data, cannot use `this` or `super`, and cannot be overridden.
 - **Static Blocks**: Static blocks are used for initializing static variables and are executed when the class is loaded.
 - **Static Inner Classes**: Only nested classes can be static, and static inner classes can have static variables.
----
-
-Here’s a revised version of your content for a GitHub README that covers inheritance in Java, including types, examples, and key concepts:
 
 ---
 
@@ -1608,6 +1605,12 @@ Derived Class Constructor Called with value 10
 ```
 
 ## Types of Inheritance
+
+- **Single Inheritance:** A subclass inherits from a single superclass, forming a parent-child relationship.
+- **Multilevel Inheritance:** A class derives from a subclass, creating a chain of inheritance through multiple levels.
+- **Hierarchical Inheritance:** Multiple subclasses inherit from a single superclass, allowing various classes to share the same parent.
+- **Multiple Inheritance:** A class inherits from multiple superclasses, combining features from more than one parent class. (Note: Java supports multiple inheritance through interfaces due to its restriction on multiple class inheritance.)
+- **Hybrid Inheritance:** A mix of different inheritance types, usually implemented with interfaces to circumvent Java's limitations on multiple class inheritance.
 
 ## Single Inheritance:  
   Involves a subclass inheriting from a single superclass.
@@ -1702,7 +1705,31 @@ Derived Class Constructor Called with value 10
   // }
   ```
 
-  **Explanation:** Class `C` attempts to inherit from both `A` and `B`, which is not allowed in Java.
+**Explanation:** Class `C` attempts to inherit from both `A` and `B`, which is not allowed in Java.
+
+**The Diamond Problem:**
+   - The diamond problem occurs in languages that allow multiple inheritance. Imagine a scenario where a class `C` inherits from two classes, `A` and `B`, both of which have a common method.
+   - If `C` calls that common method, which implementation should be used? This ambiguity leads to the diamond problem.
+   - Java avoids this issue by not allowing multiple class inheritance.
+
+**Interfaces for Multiple Inheritance:**
+   - Java achieves multiple inheritance through interfaces.
+   - An interface defines a contract—a set of method signatures—that a class must implement.
+   - A class can implement multiple interfaces, effectively inheriting behavior from all of them.
+   - Example:
+     ```java
+     interface Swimming {
+         void swim();
+     }
+
+     interface Flying {
+         void fly();
+     }
+
+     class Duck implements Swimming, Flying {
+         // Implement swim() and fly() methods
+     }
+     ```
 
 ## Hybrid Inheritance (Not Supported in Java): 
   A combination of two or more types of inheritance. Java does not support hybrid inheritance through classes but allows it through interfaces.
@@ -1830,7 +1857,7 @@ class Test {
     ```
 
 
-## 18. Returning Objects
+## Returning Objects in Method
 
 Methods in Java can return objects.
 
@@ -1857,30 +1884,89 @@ class RetOb {
 }
 ```
 
-## 19. Note on Unsupported Types
+Here is the continuation of the guide, incorporating the new concepts and examples:
 
-- **Multiple Inheritance:** Java does not support multiple inheritance through classes, but it can be achieved through interfaces.
+---
 
-  ```java
-  interface A {
-      void methodA();
-  }
+## Method Overriding:
+    - In a class hierarchy, when a method in a subclass has the same name and type signature as a method in its superclass, then the method in the subclass is said to override the method in the superclass.
+    - When an overridden method is called from within its subclass, it will always refer to the version of that method defined by the subclass. The version of the method defined by the superclass will be hidden.
 
-  interface B {
-      void methodB();
-  }
+    ```java
+    class A {
+        void display() {
+            System.out.println("Display method in A");
+        }
+    }
 
-  class C implements A, B {
-      public void methodA() {
-          // implementation
-      }
+    class B extends A {
+        @Override
+        void display() {
+            System.out.println("Display method in B");
+        }
+    }
 
-      public void methodB() {
-          // implementation
-      }
-  }
-  ```
+    public class Test {
+        public static void main(String[] args) {
+            A a = new B();
+            a.display(); // Output: Display method in B
+        }
+    }
+    ```
+    - In the above example, `display()` in `B` overrides `display()` in `A`. When `display()` is called using a reference of type `A` but pointing to an object of type `B`, the version in `B` is executed.
 
+## Dynamic Method Dispatch:
+    - Dynamic method dispatch is the mechanism by which a call to an overridden method is resolved at run time, rather than compile time. This is how Java implements run-time polymorphism.
+    - A superclass reference variable can refer to a subclass object. When an overridden method is called through a superclass reference, Java determines which version of that method to execute based on the type of the object being referred to at the time the call occurs. Thus, this determination is made at run time.
+
+    ```java
+    class A {
+        void show() {
+            System.out.println("Show method in A");
+        }
+    }
+
+    class B extends A {
+        @Override
+        void show() {
+            System.out.println("Show method in B");
+        }
+    }
+
+    public class Test {
+        public static void main(String[] args) {
+            A obj = new B();
+            obj.show(); // Output: Show method in B
+        }
+    }
+    ```
+    - In this example, `show()` is overridden in `B`. When `show()` is called using the reference variable `obj` of type `A` that points to an object of type `B`, the overridden method in `B` is executed.
+
+## Return Type in Method Overriding:
+    - If class `B` extends class `A`, then a method in `B` can override a method in `A` while changing the return type to a type that is a subclass of the return type in `A`.
+
+    ```java
+    class A {
+        A get() {
+            return this;
+        }
+    }
+
+    class B extends A {
+        @Override
+        B get() {
+            return this;
+        }
+    }
+
+    public class Test {
+        public static void main(String[] args) {
+            A a = new B();
+            B b = (B) a.get(); // Safe casting because get() returns B in subclass
+        }
+    }
+    ```
+    - In this case, `get()` in `B` returns `B` instead of `A`. The return type can be a subtype of the return type in the superclass method.
 ---
 
 This README file provides a comprehensive guide to the content of your DSA repository, including examples and detailed explanations.
