@@ -53,6 +53,8 @@
      - [Using `final` with Inheritance](using-final-with-inheritance)
    - [3. Polymorphism Does Not Apply to Instance Variables](#polymorphism-does-not-apply-to-instance-variables)
      - [Method Overloading](#method-overloading)
+     - [Method Overriding](#method-overriding)
+     - [Dynamic Method Dispatch](#dynamic-method-dispatch)
 
 ---
 
@@ -1889,8 +1891,8 @@ Here is the continuation of the guide, incorporating the new concepts and exampl
 ---
 
 ## Method Overriding:
-    - In a class hierarchy, when a method in a subclass has the same name and type signature as a method in its superclass, then the method in the subclass is said to override the method in the superclass.
-    - When an overridden method is called from within its subclass, it will always refer to the version of that method defined by the subclass. The version of the method defined by the superclass will be hidden.
+- In a class hierarchy, when a method in a subclass has the same name and type signature as a method in its superclass, then the method in the subclass is said to override the method in the superclass.
+- When an overridden method is called from within its subclass, it will always refer to the version of that method defined by the subclass. The version of the method defined by the superclass will be hidden.
 
     ```java
     class A {
@@ -1913,11 +1915,11 @@ Here is the continuation of the guide, incorporating the new concepts and exampl
         }
     }
     ```
-    - In the above example, `display()` in `B` overrides `display()` in `A`. When `display()` is called using a reference of type `A` but pointing to an object of type `B`, the version in `B` is executed.
+- In the above example, `display()` in `B` overrides `display()` in `A`. When `display()` is called using a reference of type `A` but pointing to an object of type `B`, the version in `B` is executed.
 
 ## Dynamic Method Dispatch:
-    - Dynamic method dispatch is the mechanism by which a call to an overridden method is resolved at run time, rather than compile time. This is how Java implements run-time polymorphism.
-    - A superclass reference variable can refer to a subclass object. When an overridden method is called through a superclass reference, Java determines which version of that method to execute based on the type of the object being referred to at the time the call occurs. Thus, this determination is made at run time.
+- Dynamic method dispatch is the mechanism by which a call to an overridden method is resolved at run time, rather than compile time. This is how Java implements run-time polymorphism.
+- A superclass reference variable can refer to a subclass object. When an overridden method is called through a superclass reference, Java determines which version of that method to execute based on the type of the object being referred to at the time the call occurs. Thus, this determination is made at run time.
 
     ```java
     class A {
@@ -1940,10 +1942,10 @@ Here is the continuation of the guide, incorporating the new concepts and exampl
         }
     }
     ```
-    - In this example, `show()` is overridden in `B`. When `show()` is called using the reference variable `obj` of type `A` that points to an object of type `B`, the overridden method in `B` is executed.
+- In this example, `show()` is overridden in `B`. When `show()` is called using the reference variable `obj` of type `A` that points to an object of type `B`, the overridden method in `B` is executed.
 
 ## Return Type in Method Overriding:
-    - If class `B` extends class `A`, then a method in `B` can override a method in `A` while changing the return type to a type that is a subclass of the return type in `A`.
+- If class `B` extends class `A`, then a method in `B` can override a method in `A` while changing the return type to a type that is a subclass of the return type in `A`.
 
     ```java
     class A {
@@ -1966,7 +1968,7 @@ Here is the continuation of the guide, incorporating the new concepts and exampl
         }
     }
     ```
-    - In this case, `get()` in `B` returns `B` instead of `A`. The return type can be a subtype of the return type in the superclass method.
+- In this case, `get()` in `B` returns `B` instead of `A`. The return type can be a subtype of the return type in the superclass method.
 ---
 
 This README file provides a comprehensive guide to the content of your DSA repository, including examples and detailed explanations.
