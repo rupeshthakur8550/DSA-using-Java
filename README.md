@@ -32,6 +32,10 @@
      - [Objects](#objects)
      - [Dot Operator](#dot-operator)
      - [Dynamic Memory Allocation with 'new'](#dynamic-memory-allocation-with-new)
+     - [Types of Constructors](#types-of-constructors)
+     - [The `this` Keyword](#the-this-keyword)
+     - [The `final` Keyword](#the-final-keyword)
+     - [The `finalize()` Method](#the-finalize-method)
    - [2. Inheritance](#inheritance)
      - [Single Inheritance](#single-inheritance)
      - [Multilevel Inheritance](#multilevel-inheritance)
@@ -1298,7 +1302,7 @@ class Box {
 }
 ```
 
-## 6. The `final` Keyword
+## The `final` Keyword
 - The `final` keyword makes a variable constant. Once assigned, it cannot be changed.
 - It's common to use all uppercase letters for `final` variables.
 
@@ -1308,7 +1312,7 @@ final int FILE_OPEN = 2;
 ```
 - For reference types, `final` guarantees immutability of the reference, not the object’s contents.
 
-## 7. The `finalize()` Method
+## The `finalize()` Method
 - The `finalize()` method is invoked before an object is garbage collected, allowing the object to perform cleanup operations.
 
 **Example: Finalizer Method**
