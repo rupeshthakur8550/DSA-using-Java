@@ -1824,7 +1824,7 @@ The `final` keyword can be used in three ways:
        // class body
    }
    ```
-Polymorphism
+## Polymorphism
 
 Polymorphism allows objects of different classes to be treated as objects of a common superclass. It is one of the key principles of OOP that facilitates flexibility and the ability to use a unified interface for different underlying forms (data types).
 
