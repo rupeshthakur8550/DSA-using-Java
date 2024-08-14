@@ -32,16 +32,22 @@
      - [Objects](#objects)
      - [Dot Operator](#dot-operator)
      - [Dynamic Memory Allocation with 'new'](#dynamic-memory-allocation-with-new)
-     - [Types of Constructors](#types-of-constructors)
+    - [Types of Constructors](#types-of-constructors)
      - [The `this` Keyword](#the-this-keyword)
      - [The `final` Keyword](#the-final-keyword)
      - [The `finalize()` Method](#the-finalize-method)
-   - [2. Inheritance](#inheritance)
-     - [Single Inheritance](#single-inheritance)
-     - [Multilevel Inheritance](#multilevel-inheritance)
-     - [Hierarchical Inheritance](#hierarchical-inheritance)
-     - [Multiple Inheritance (Not Supported in Java)](#multiple-inheritance-not-supported-in-java)
-     - [Hybrid Inheritance (Not Supported in Java)](#hybrid-inheritance-not-supported-in-java)
+     - [Parameters and Arguments](#parameters-and-arguments)
+     - [Packages in Java](#packages-in-java)
+     - [Access Control in Packages](#access-control-in-packages)
+     - [Understanding Static](#understanding-static)
+   - [Inheritance in Java](#inheritance-in-java)
+     - [Constructors in Inheritance](#constructors-in-inheritance)
+     - [Types of Inheritance](#types-of-inheritance)
+         - [Single Inheritance](#single-inheritance)
+         - [Multilevel Inheritance](#multilevel-inheritance)
+         - [Hierarchical Inheritance](#hierarchical-inheritance)
+         - [Multiple Inheritance (Not Supported in Java)](#multiple-inheritance-not-supported-in-java)
+         - [Hybrid Inheritance (Not Supported in Java)](#hybrid-inheritance-not-supported-in-java)
    - [Superclass Variable References Subclass Objects](#a-superclass-variable-can-reference-a-subclass-object)
    - [Using `super`](#using-super)
      - [Calling Superclass Constructor](#calling-superclass-constructor)
@@ -1322,7 +1328,7 @@ protected void finalize() {
 }
 ```
 
-## 8. Parameters and Arguments
+## Parameters and Arguments
 - **Parameter**: A variable in the method definition.
 - **Argument**: The value passed to the method during the call.
 
@@ -1336,66 +1342,8 @@ int square(int i) {
 ```java
 int result = square(5);  // Parameter i = 5; result = 25
 ```
-
-## 9. Inheritance and Constructors in Java
-- In Java, a derived class automatically calls the constructor of its base class if the base class constructor has no arguments.
-
-**Example: Base and Derived Class Constructor**
-```java
-class Base {
-    Base() {
-        System.out.println("Base Class Constructor Called");
-    }
-}
-
-class Derived extends Base {
-    Derived() {
-        System.out.println("Derived Class Constructor Called");
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Derived d = new Derived();
-    }
-}
-```
-**Output:**
-```
-Base Class Constructor Called
-Derived Class Constructor Called
-```
-
-- If the base class has a parameterized constructor, it must be explicitly called using `super()` in the derived class constructor.
-
-**Example: Parameterized Constructor with `super`**
-```java
-class Base {
-    Base(int x) {
-        System.out.println("Base Class Constructor Called with value " + x);
-    }
-}
-
-class Derived extends Base {
-    Derived(int x) {
-        super(x); // Explicit call to superclass constructor
-        System.out.println("Derived Class Constructor Called with value " + x);
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Derived d = new Derived(10);
-    }
-}
-```
-**Output:**
-```
-Base Class Constructor Called with value 10
-Derived Class Constructor Called with value 10
-```
 ---
-## 10. Packages in Java
+## Packages in Java
 
 ### Introduction to Packages
 - **Packages** in Java are containers for classes, helping to keep the class namespace compartmentalized. They ensure that class names do not collide with one another, even if multiple classes have the same name but are stored in different packages.
@@ -1490,7 +1438,7 @@ The Java run-time system looks for packages using three mechanisms:
 - **Access Control** is enforced in packages, where only `public` members are accessible to classes outside the package.
 - Proper **directory structure** is crucial for packages to be recognized by the Java run-time system.
 ---
-## 11. Understanding Static
+## Understanding Static
 
 ### Introduction to Static Members
 - **Static members** in Java, such as methods and variables, can be accessed before any objects of the class are created and without reference to any object.
@@ -1598,7 +1546,7 @@ Here’s a revised version of your content for a GitHub README that covers inher
 
 ---
 
-## 12. Inheritance in Java
+## Inheritance in Java
 
 - Inheritance allows a class to use properties and methods of another class. The class that is inherited is called the superclass, and the class that inherits is called the subclass.
     - The `extends` keyword is used to inherit a class.
@@ -1611,8 +1559,65 @@ Here’s a revised version of your content for a GitHub README that covers inher
     - You can only specify one superclass for any subclass that you create. Java does not support the inheritance of multiple super classes into a single subclass. However, you can create a hierarchy of inheritance in which a subclass becomes a superclass of another subclass.
     - Although a subclass includes all of the members of its superclass, it cannot access those members of the superclass that have been declared as `private`.
 
-## **Types of Inheritance** -
+## Constructors in Inheritance
+- In Java, a derived class automatically calls the constructor of its base class if the base class constructor has no arguments.
 
+**Example: Base and Derived Class Constructor**
+```java
+class Base {
+    Base() {
+        System.out.println("Base Class Constructor Called");
+    }
+}
+
+class Derived extends Base {
+    Derived() {
+        System.out.println("Derived Class Constructor Called");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Derived d = new Derived();
+    }
+}
+```
+**Output:**
+```
+Base Class Constructor Called
+Derived Class Constructor Called
+```
+
+- If the base class has a parameterized constructor, it must be explicitly called using `super()` in the derived class constructor.
+
+**Example: Parameterized Constructor with `super`**
+```java
+class Base {
+    Base(int x) {
+        System.out.println("Base Class Constructor Called with value " + x);
+    }
+}
+
+class Derived extends Base {
+    Derived(int x) {
+        super(x); // Explicit call to superclass constructor
+        System.out.println("Derived Class Constructor Called with value " + x);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Derived d = new Derived(10);
+    }
+}
+```
+**Output:**
+```
+Base Class Constructor Called with value 10
+Derived Class Constructor Called with value 10
+```
+
+## **Types of Inheritance** -
 
 - **Single Inheritance:**  
   Involves a subclass inheriting from a single superclass.
