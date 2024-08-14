@@ -1151,9 +1151,10 @@ Each of these sorting techniques has its own strengths and use cases, and the ch
 ## 1. Classes and Objects
 
 ### Classes
-- A **class** is a blueprint for creating objects. It defines a new data type that can be used to create objects.
-- A class is a logical construct that doesn't occupy space in memory until an object is instantiated from it.
+- A **class** is a blueprint for creating objects and defines a new data type that can be used to instantiate objects.
+- It is a logical construct and doesn't occupy space in memory until an object is instantiated from it.
 
+**Example: Defining a Class**
 ```java
 class Box {
     double width;
@@ -1163,49 +1164,49 @@ class Box {
 ```
 
 ### Objects
-- An **object** is an instance of a class. It has physical reality and occupies space in memory.
-- Objects are characterized by three essential properties: state, identity, and behavior.
+- An **object** is an instance of a class with physical reality, occupying space in memory.
+- Objects are characterized by three essential properties: **state**, **identity**, and **behavior**.
 
-### State, Identity, and Behavior
-- **State**: The value from its data type (e.g., the values of an object's attributes).
-- **Identity**: Distinguishes one object from another, akin to its memory address.
-- **Behavior**: The effect of operations defined by its class (e.g., methods).
+**State, Identity, and Behavior:**
+- **State**: The values of an object's attributes (e.g., the width, height, and depth of a `Box`).
+- **Identity**: Distinguishes one object from another, similar to its memory address.
+- **Behavior**: The effect of operations defined by its class (e.g., methods in the `Box` class).
 
-### Example: Creating an Object
-- The `new` keyword dynamically allocates memory for an object at runtime and returns a reference to it.
-
+**Example: Creating an Object**
 ```java
 Box myBox;           // Declare reference to an object
 myBox = new Box();   // Allocate a Box object
 ```
-- The first line declares `myBox` as a reference to a `Box` object.
-- The second line allocates memory for a `Box` object and assigns the reference to `myBox`.
+- `myBox` is a reference to a `Box` object.
+- `new Box()` allocates memory for the object and assigns the reference to `myBox`.
 
-## 1. The Dot Operator
-- The dot operator (`.`) links the name of the object with the name of an instance variable or method.
-- In Java, it's formally a separator.
+## 2. The Dot Operator
+- The dot operator (`.`) links the object with its instance variables or methods, formally a separator in Java.
 
+**Example: Using the Dot Operator**
 ```java
 myBox.width = 10;   // Set the width of myBox to 10
 ```
 
-## 2. Dynamic Memory Allocation with `new`
-- The `new` keyword allocates memory for an object at runtime.
+## 3. Dynamic Memory Allocation with `new`
+- The `new` keyword dynamically allocates memory for an object at runtime.
 
+**Example: Reference Assignment**
 ```java
 Box b1 = new Box();
-Box b2 = b1;       // b2 now refers to the same Box object as b1
+Box b2 = b1;       // b2 refers to the same Box object as b1
 ```
-- `b1` and `b2` refer to the same object. Changes made through `b2` affect the object referenced by `b1`.
+- Both `b1` and `b2` refer to the same object. Changes through `b2` affect the object referenced by `b1`.
 
-### Primitive Types vs. Objects
-- Java’s primitive types (e.g., int, char) are not implemented as objects. They are implemented as “normal” variables for efficiency.
+**Primitive Types vs. Objects:**
+- Java’s primitive types (e.g., `int`, `char`) are not implemented as objects but as normal variables for efficiency.
 
-## 3. Constructors
-- A **constructor** initializes an object when it is created. It's defined by the class name followed by parentheses.
-- Once defined, the constructor is automatically called when the object is created, before the `new` operator completes.
+## 4. Constructors
+- A **constructor** initializes an object when it is created. The constructor has the same name as the class and no return type.
+- Constructors are automatically called when the object is created.
 
 ### Types of Constructors
+
 1. **Default Constructor**: No parameters.
    ```java
    class Box {
@@ -1217,6 +1218,11 @@ Box b2 = b1;       // b2 now refers to the same Box object as b1
        }
    }
    ```
+   **Output**:
+   ```java
+   Box myBox = new Box();  // width, height, depth initialized to 10
+   ```
+
 2. **Parameterized Constructor**: Takes arguments.
    ```java
    class Box {
@@ -1228,6 +1234,11 @@ Box b2 = b1;       // b2 now refers to the same Box object as b1
        }
    }
    ```
+   **Output**:
+   ```java
+   Box myBox = new Box(5, 10, 15);  // width=5, height=10, depth=15
+   ```
+
 3. **Copy Constructor**: Initializes an object using another object of the same class.
    ```java
    class Box {
@@ -1239,18 +1250,16 @@ Box b2 = b1;       // b2 now refers to the same Box object as b1
        }
    }
    ```
+   **Output**:
+   ```java
+   Box myBox1 = new Box(5, 10, 15);
+   Box myBox2 = new Box(myBox1);  // myBox2 has the same dimensions as myBox1
+   ```
 
-### Example Usage
-```java
-Box myBox1 = new Box();
-Box myBox2 = new Box(5, 10, 15);
-Box myBox3 = new Box(myBox2);
-```
+## 5. The `this` Keyword
+- `this` refers to the current object in a method or constructor and is used to distinguish between instance variables and parameters.
 
-## 4. The `this` Keyword
-- Sometimes a method will need to refer to the object that invoked it. To allow this, Java defines the `this` keyword.
-- `this` can be used inside any method to refer to the current object. That is, `this` is always a reference to the object on which the method was invoked.
-
+**Example: Using `this`**
 ```java
 class Box {
     double width, height, depth;
@@ -1262,87 +1271,97 @@ class Box {
 }
 ```
 
-## 5. The `final` Keyword
-- A field can be declared as `final`. Doing so prevents its contents from being modified, making it essentially a constant.
-- It is a common coding convention to choose all uppercase identifiers for final fields.
+## 6. The `final` Keyword
+- The `final` keyword makes a variable constant. Once assigned, it cannot be changed.
+- It's common to use all uppercase letters for `final` variables.
 
+**Example: Final Variable**
 ```java
 final int FILE_OPEN = 2;
 ```
-- Final guarantees immutability only when instance variables are primitive types, not reference types.
+- For reference types, `final` guarantees immutability of the reference, not the object’s contents.
 
-## 6. The `finalize()` Method
-- Sometimes an object will need to perform some action when it is destroyed. To handle such situations, Java provides a mechanism called finalization.
-- To add a finalizer to a class, you simply define the `finalize()` method. The Java runtime calls that method whenever it is about to recycle an object of that class.
+## 7. The `finalize()` Method
+- The `finalize()` method is invoked before an object is garbage collected, allowing the object to perform cleanup operations.
 
+**Example: Finalizer Method**
 ```java
 protected void finalize() {
     // finalization code here
 }
 ```
 
-## 7. Parameters and Arguments
-- A **parameter** is a variable defined by a method that receives a value when the method is called.
-- An **argument** is the value passed to the method.
+## 8. Parameters and Arguments
+- **Parameter**: A variable in the method definition.
+- **Argument**: The value passed to the method during the call.
 
+**Example: Method with Parameter**
 ```java
 int square(int i) {
     return i * i;
 }
 ```
-- Here, `i` is a parameter. When calling `square(100)`, 100 is the argument.
-
-### Example Usage
+**Example Usage:**
 ```java
-Bus bus = new Bus();  // lhs (reference 'bus') is checked by the compiler, rhs (object 'new Bus()') is checked by the JVM
+int result = square(5);  // Parameter i = 5; result = 25
 ```
 
-## 8. Inheritance and Constructors in Java
-- In Java, the constructor of a base class with no arguments gets automatically called in the derived class constructor.
+## 9. Inheritance and Constructors in Java
+- In Java, a derived class automatically calls the constructor of its base class if the base class constructor has no arguments.
 
+**Example: Base and Derived Class Constructor**
 ```java
 class Base {
-  Base() {
-    System.out.println("Base Class Constructor Called ");
-  }
+    Base() {
+        System.out.println("Base Class Constructor Called");
+    }
 }
 
 class Derived extends Base {
-  Derived() {
-    System.out.println("Derived Class Constructor Called ");
-  }
+    Derived() {
+        System.out.println("Derived Class Constructor Called");
+    }
 }
 
 public class Main {
-  public static void main(String[] args) {
-    Derived d = new Derived();
-  }
+    public static void main(String[] args) {
+        Derived d = new Derived();
+    }
 }
 ```
-- Any class will have a default constructor, even if it is not explicitly declared.
-- If the derived class has a parameterized constructor, it must explicitly call the parameterized constructor of the base class if the base class does not have a default constructor.
+**Output:**
+```
+Base Class Constructor Called
+Derived Class Constructor Called
+```
 
-### Example of Parameterized Superclass Constructor Call
+- If the base class has a parameterized constructor, it must be explicitly called using `super()` in the derived class constructor.
+
+**Example: Parameterized Constructor with `super`**
 ```java
 class Base {
-  Base(int x) {
-    System.out.println("Base Class Constructor Called with value " + x);
-  }
+    Base(int x) {
+        System.out.println("Base Class Constructor Called with value " + x);
+    }
 }
 
 class Derived extends Base {
-  Derived(int x) {
-    super(x); // Explicit call to superclass parameterized constructor
-    System.out.println("Derived Class Constructor Called with value " + x);
-  }
+    Derived(int x) {
+        super(x); // Explicit call to superclass constructor
+        System.out.println("Derived Class Constructor Called with value " + x);
+    }
 }
 
 public class Main {
-  public static void main(String[] args) {
-    Derived d = new Derived(10);
-  }
+    public static void main(String[] args) {
+        Derived d = new Derived(10);
+    }
 }
 ```
-
+**Output:**
+```
+Base Class Constructor Called with value 10
+Derived Class Constructor Called with value 10
+```
 ---
 This README file provides a comprehensive guide to the content of your DSA repository, including examples and detailed explanations.
