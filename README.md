@@ -1617,7 +1617,7 @@ Base Class Constructor Called with value 10
 Derived Class Constructor Called with value 10
 ```
 
-## Types of Inheritance -
+## Types of Inheritance
 
 ## Single Inheritance:  
   Involves a subclass inheriting from a single superclass.
