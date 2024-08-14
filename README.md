@@ -30,7 +30,9 @@
    - [1. Classes and Objects](#1-classes-and-objects)
      - [Classes](#classes)
      - [Objects](#objects)
-   - [Inheritance](#inheritance)
+     - [Dot Operator](#dot-operator)
+     - [Dynamic Memory Allocation with 'new'](#dynamic-memory-allocation-with-new)
+   - [2. Inheritance](#inheritance)
      - [Single Inheritance](#single-inheritance)
      - [Multilevel Inheritance](#multilevel-inheritance)
      - [Hierarchical Inheritance](#hierarchical-inheritance)
@@ -1173,7 +1175,7 @@ Each of these sorting techniques has its own strengths and use cases, and the ch
 
 ### Object Oriented Programming
 
-### 1. Classes and Objects
+### Classes and Objects
 
 ### Classes
 - A **class** is a blueprint for creating objects and defines a new data type that can be used to instantiate objects.
@@ -1205,7 +1207,7 @@ myBox = new Box();   // Allocate a Box object
 - `myBox` is a reference to a `Box` object.
 - `new Box()` allocates memory for the object and assigns the reference to `myBox`.
 
-### 2. The Dot Operator
+###  Dot Operator
 - The dot operator (`.`) links the object with its instance variables or methods, formally a separator in Java.
 
 **Example: Using the Dot Operator**
@@ -1213,7 +1215,7 @@ myBox = new Box();   // Allocate a Box object
 myBox.width = 10;   // Set the width of myBox to 10
 ```
 
-## 3. Dynamic Memory Allocation with `new`
+## Dynamic Memory Allocation with `new`
 - The `new` keyword dynamically allocates memory for an object at runtime.
 
 **Example: Reference Assignment**
@@ -1226,7 +1228,7 @@ Box b2 = b1;       // b2 refers to the same Box object as b1
 **Primitive Types vs. Objects:**
 - Java’s primitive types (e.g., `int`, `char`) are not implemented as objects but as normal variables for efficiency.
 
-## 4. Constructors
+## Constructors
 - A **constructor** initializes an object when it is created. The constructor has the same name as the class and no return type.
 - Constructors are automatically called when the object is created.
 
@@ -1281,7 +1283,7 @@ Box b2 = b1;       // b2 refers to the same Box object as b1
    Box myBox2 = new Box(myBox1);  // myBox2 has the same dimensions as myBox1
    ```
 
-## 5. The `this` Keyword
+## The `this` Keyword
 - `this` refers to the current object in a method or constructor and is used to distinguish between instance variables and parameters.
 
 **Example: Using `this`**
