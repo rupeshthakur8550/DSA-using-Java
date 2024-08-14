@@ -28,6 +28,7 @@
    - [Quick Sort](#quick-sort)
 6. [Object-Oriented Programming](#object-oriented-programming-(OOP)-in-java)
    - [Classes and Objects](#classes-and-objects)
+     - [Classes](#classes)
    - [Inheritance](#inheritance)
      - [Single Inheritance](#single-inheritance)
      - [Multilevel Inheritance](#multilevel-inheritance)
