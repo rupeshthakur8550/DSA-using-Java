@@ -2002,4 +2002,291 @@ Here is the continuation of the guide, incorporating the new concepts and exampl
 - In this case, `get()` in `B` returns `B` instead of `A`. The return type can be a subtype of the return type in the superclass method.
 ---
 
+Here's the revised and organized guide with **Abstraction** and **Interfaces** as main tags, with **Interfaces** related topics structured as subtopics:
+
+---
+
+# Abstraction in Java
+
+## Abstract Classes and Methods
+
+- **Abstract Classes:**
+    - An abstract class is a class that cannot be instantiated directly and is meant to be subclassed. It often contains abstract methods that must be implemented by subclasses.
+    - Abstract methods are declared using the `abstract` keyword and do not have a body in the abstract class. They must be overridden in non-abstract subclasses.
+
+    ```java
+    abstract class Animal {
+        abstract void makeSound(); // Abstract method
+
+        void sleep() { // Concrete method
+            System.out.println("This animal sleeps.");
+        }
+    }
+
+    class Dog extends Animal {
+        @Override
+        void makeSound() {
+            System.out.println("Bark");
+        }
+    }
+
+    public class Test {
+        public static void main(String[] args) {
+            Dog dog = new Dog();
+            dog.makeSound(); // Output: Bark
+            dog.sleep();     // Output: This animal sleeps.
+        }
+    }
+    ```
+
+- **Key Points:**
+    - Abstract classes cannot be instantiated directly.
+    - An abstract class can have both abstract and concrete methods.
+    - Any class with abstract methods must be declared as abstract.
+    - Abstract classes can include constructors, but they cannot be instantiated directly.
+
+---
+
+# Interfaces in Java
+
+## Overview
+
+- **Definition:**
+    - An interface is like a class but cannot maintain state information (i.e., it cannot have instance variables). It defines a contract for what methods a class must implement but not how they are implemented.
+
+    ```java
+    interface Animal {
+        void makeSound(); // Abstract method
+    }
+    ```
+
+- **Key Points:**
+    - Interfaces specify only what the class must do, not how it does it.
+    - All methods in an interface are implicitly `public` and `abstract`, and all variables are implicitly `public`, `static`, and `final`.
+    - A class can implement multiple interfaces, allowing for multiple inheritance of types.
+
+## Abstract Classes vs. Interfaces
+
+- **Abstract Classes:**
+    - Can have both abstract (without body) and concrete (with body) methods.
+    - Can have instance variables that may be final, non-final, static, or non-static.
+    - Can have constructors.
+    - A class can only extend one abstract or concrete class but can implement multiple interfaces.
+
+- **Interfaces:**
+    - Can only have abstract methods (from Java 8, default and static methods are also allowed).
+    - All variables are implicitly `public`, `static`, and `final`.
+    - Cannot have constructors.
+    - Can be implemented by multiple classes and extended by other interfaces.
+
+    - **Example of Abstract Class vs. Interface:**
+
+    ```java
+    interface Animal {
+        void makeSound(); // Abstract method
+        static void sleep() { // Static method
+            System.out.println("All animals sleep.");
+        }
+    }
+
+    abstract class Mammal implements Animal {
+        abstract void liveBirth(); // Abstract method
+
+        void walk() { // Concrete method
+            System.out.println("This mammal walks.");
+        }
+    }
+
+    class Dog extends Mammal {
+        @Override
+        public void makeSound() {
+            System.out.println("Bark");
+        }
+
+        @Override
+        void liveBirth() {
+            System.out.println("Giving birth to live young.");
+        }
+    }
+
+    public class Test {
+        public static void main(String[] args) {
+            Dog dog = new Dog();
+            dog.makeSound(); // Output: Bark
+            dog.walk();      // Output: This mammal walks.
+            dog.liveBirth(); // Output: Giving birth to live young.
+
+            Animal.sleep(); // Output: All animals sleep.
+        }
+    }
+    ```
+
+## Multiple Inheritance and Interfaces
+
+- **Multiple Inheritance:**
+    - Java does not support multiple inheritance of classes to avoid ambiguity that could arise from having two superclasses with the same method signature but different implementations. Instead, Java uses interfaces to achieve similar functionality without these issues.
+
+- **Interfaces:**
+    - An interface specifies methods that must be implemented by any class that chooses to implement it. Interfaces cannot maintain state information (i.e., they cannot have instance variables).
+
+    ```java
+    interface Animal {
+        void makeSound(); // Abstract method
+    }
+
+    interface Swimmer {
+        void swim(); // Abstract method
+    }
+
+    class Dolphin implements Animal, Swimmer {
+        @Override
+        public void makeSound() {
+            System.out.println("Click-click");
+        }
+
+        @Override
+        public void swim() {
+            System.out.println("Dolphin swims swiftly.");
+        }
+    }
+
+    public class Test {
+        public static void main(String[] args) {
+            Dolphin dolphin = new Dolphin();
+            dolphin.makeSound(); // Output: Click-click
+            dolphin.swim();     // Output: Dolphin swims swiftly.
+        }
+    }
+    ```
+
+- **Key Points:**
+    - Interfaces specify what methods a class should implement, not how they should be implemented.
+    - A class can implement multiple interfaces, allowing it to provide behavior from different sources.
+
+## Dynamic Method Resolution and Interfaces
+
+- **Dynamic Method Resolution:**
+    - Java uses dynamic method dispatch to resolve method calls at runtime based on the actual object type, not the reference type. This allows for polymorphism, where a method call can invoke different implementations based on the object being referred to.
+
+    ```java
+    interface Printer {
+        void print();
+    }
+
+    class InkjetPrinter implements Printer {
+        @Override
+        public void print() {
+            System.out.println("Printing with inkjet printer.");
+        }
+    }
+
+    class LaserPrinter implements Printer {
+        @Override
+        public void print() {
+            System.out.println("Printing with laser printer.");
+        }
+    }
+
+    public class Test {
+        public static void main(String[] args) {
+            Printer printer = new InkjetPrinter();
+            printer.print(); // Output: Printing with inkjet printer.
+
+            printer = new LaserPrinter();
+            printer.print(); // Output: Printing with laser printer.
+        }
+    }
+    ```
+
+- **Key Points:**
+    - Method resolution is based on the actual object type at runtime.
+    - Interfaces allow for flexible and dynamic method resolution.
+
+## Nested Interfaces
+
+- **Definition:**
+    - An interface can be a member of another class or interface, known as a nested interface. Nested interfaces can be `public`, `private`, or `protected`.
+
+    ```java
+    class Outer {
+        interface Inner {
+            void display();
+        }
+    }
+
+    class Implementer implements Outer.Inner {
+        @Override
+        public void display() {
+            System.out.println("Display method in Implementer.");
+        }
+    }
+
+    public class Test {
+        public static void main(String[] args) {
+            Outer.Inner obj = new Implementer();
+            obj.display(); // Output: Display method in Implementer.
+        }
+    }
+    ```
+
+- **Key Points:**
+    - Nested interfaces are used to logically group related interfaces within another class or interface.
+    - They can have various access modifiers and can be implemented similarly to top-level interfaces.
+
+## Default and Static Interface Methods
+
+- **Default Interface Methods:**
+    - From JDK 8, interfaces can have default methods with implementations. This allows interfaces to evolve without breaking existing implementations.
+
+    ```java
+    interface Printer {
+        void print();
+
+        default String defaultMessage() {
+            return "Default print message.";
+        }
+    }
+
+    class BasicPrinter implements Printer {
+        @Override
+        public void print() {
+            System.out.println("Basic printing.");
+        }
+    }
+
+    public class Test {
+        public static void main(String[] args) {
+            BasicPrinter printer = new BasicPrinter();
+            printer.print();            // Output: Basic printing.
+            System.out.println(printer.defaultMessage()); // Output: Default print message.
+        }
+    }
+    ```
+
+- **Key Points:**
+    - Default methods allow interfaces to have method implementations.
+    - When a class implements an interface, it can override default methods or use the provided implementation.
+
+- **Static Interface Methods:**
+    - Static methods in interfaces are allowed but are not inherited by implementing classes or subinterfaces. They must have a body and are called using the interface name.
+
+    ```java
+    interface Utility {
+        static void utilityMethod() {
+            System.out.println("Utility static method.");
+        }
+    }
+
+    public class Test {
+        public static void main(String[] args) {
+            Utility.utilityMethod(); // Output: Utility static method.
+        }
+    }
+    ```
+
+- **Key Points:**
+    - Static methods in interfaces are not inherited.
+    - They are used to provide utility methods related to the interface.
+
+---
 This README file provides a comprehensive guide to the content of your DSA repository, including examples and detailed explanations.
