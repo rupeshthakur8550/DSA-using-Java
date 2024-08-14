@@ -1929,13 +1929,13 @@ Here is the continuation of the guide, incorporating the new concepts and exampl
     }
     ```
 - In the above example, `display()` in `B` overrides `display()` in `A`. When `display()` is called using a reference of type `A` but pointing to an object of type `B`, the version in `B` is executed.
-
+---
 ## Late Binding and Early Binding
 
 - **Early Binding (Compile-Time Binding):** Method binding that occurs during compilation. This involves method overloading where the method to be called is determined at compile time based on the method signature.
 
 - **Late Binding (Run-Time Binding):** Method binding that occurs during runtime. This involves method overriding where the method to be invoked is determined at runtime based on the object's actual type.
-
+---
 ## Overriding and Access Modifiers
 
 - **Access Modifiers in Overriding:**
@@ -2019,10 +2019,6 @@ Here is the continuation of the guide, incorporating the new concepts and exampl
     }
     ```
 - In this case, `get()` in `B` returns `B` instead of `A`. The return type can be a subtype of the return type in the superclass method.
----
-
-Here's the revised and organized guide with **Abstraction** and **Interfaces** as main tags, with **Interfaces** related topics structured as subtopics:
-
 ---
 
 # Abstraction in Java
