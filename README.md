@@ -1199,6 +1199,86 @@ Each of these sorting techniques has its own strengths and use cases, and the ch
 
 ---
 
+### Sorting Questions
+
+# Window Sort with Quick Sort in Java
+
+This Java program demonstrates a custom sorting technique where an array is sorted in alternate windows. The sorting algorithm used within each window is Quick Sort. The size of each window is defined by the parameter `k`.
+
+## Overview
+
+The program initializes an array and applies the `WindowSort` method to sort the array in chunks or windows of size `k`. Within each window, the Quick Sort algorithm is used to sort the elements. The window size and the array elements can be adjusted as needed.
+
+## How It Works
+
+1. **`WindowSort` Method**: This method divides the array into windows of size `k` and sorts each window using Quick Sort.
+2. **`QuickSort` Method**: This method performs the Quick Sort algorithm on the given window of the array.
+
+## Code
+
+```java
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] arr = { 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+        WindowSort(arr, arr.length - 1, 3);
+        System.out.println(Arrays.toString(arr));
+    }
+
+    private static void WindowSort(int[] arr, int n, int k) {
+        int i = 0;
+        int j = i + (k - 1);
+        while (i < n) {
+            QuickSort(i, i + (k - 1), arr);
+            i = j + k + 1;
+            j = i + (k - 1);
+        }
+    }
+
+    private static void QuickSort(int start, int end, int[] arr) {
+        if (start > end) {
+            return;
+        }
+        int nstart = start, nend = end; 
+        int mid = nstart + (nend - nstart) / 2;
+        int pivote = arr[mid];
+        while (nstart <= nend) {
+            while (arr[nstart] < pivote) {
+                nstart++;
+            }
+            while (arr[nend] > pivote) {
+                nend--;
+            }
+            if (nstart <= nend) {
+                int temp = arr[nstart];
+                arr[nstart++] = arr[nend];
+                arr[nend--] = temp;
+            }
+        }
+        QuickSort(start, nend, arr);
+        QuickSort(nstart, end, arr);
+    }
+}
+```
+
+## Parameters
+
+- **`arr`**: The array to be sorted. 1 - n
+- **`n`**: The length of the array minus one.
+- **`k`**: The size of the sorting window. from 1 - n
+
+## Example
+
+For the provided array `{9, 8, 7, 6, 5, 4, 3, 2, 1}` and window size `k = 3`, the sorted output will be:
+```Output
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+Each window of size 3 is sorted independently, and the results are combined to form the final sorted array.
+
+---
+
 ### Object Oriented Programming
 
 ### Classes and Objects
